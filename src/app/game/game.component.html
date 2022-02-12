@@ -1,0 +1,15 @@
+<div class="card">
+    <img src=" {{game.image}} " alt="Game image" class="card-img" />
+    <div class="centered">
+        <div>
+            <p> {{game.title}} </p>
+        </div>
+        <div>
+            {{game.description}}
+        </div>
+        <div class="genres">
+            <div *ngFor="let genre of game.genres" class="genre"> {{genre}} </div>
+        </div>
+        <button class="bt-details">Détails</button>
+    </div>
+</div>

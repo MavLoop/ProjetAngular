@@ -1,0 +1,33 @@
+.genres {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 20px;
+    padding: 5px;
+}
+
+.genre {
+    color: aliceblue;
+    background-color: rgb(109, 103, 103);
+    border: 1px solid black;
+    width: fit-content;
+}
+
+.card-img {
+    width: 200px;
+    
+}
+
+.centered {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+
+.bt-details {
+    width: fit-content;
+    background-color: aqua;
+    border: 1px solid rgb(0, 140, 255);
+    border-radius: 5px;
+}

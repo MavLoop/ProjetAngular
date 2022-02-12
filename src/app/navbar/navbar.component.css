@@ -1,0 +1,27 @@
+.float-left {
+    display: flex;
+    left: 0;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.float-right {
+    right: 0;
+    width: fit-content;
+}
+
+.profile-picture {
+    height: 50px;
+    width: 50px;
+}
+
+.nav-bar {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+    background-color: antiquewhite;
+    top: 0;
+    position: sticky;
+    height: 50px;
+}

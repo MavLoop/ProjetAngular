@@ -1,0 +1,12 @@
+.cards {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 20px;
+    padding: 10px;
+}
+
+.card {
+    border: 1px solid black;
+    width: 200px;
+    height: fit-content;
+}
