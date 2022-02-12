@@ -7,8 +7,8 @@
         <div>
             {{game.description}}
         </div>
-        <div class="genres">
-            <div *ngFor="let genre of game.genres" class="genre"> {{genre}} </div>
+        <div class="genre">
+            {{game.genre.title}}
         </div>
         <button class="bt-details">Détails</button>
     </div>
