@@ -1,12 +1,12 @@
 .float-left {
     display: flex;
-    left: 0;
+    left: 30px;
     flex-direction: row;
     gap: 30px;
 }
 
 .float-right {
-    right: 0;
+    right: 30px;
     width: fit-content;
 }
 

@@ -10,3 +10,17 @@
     width: 200px;
     height: fit-content;
 }
+
+.search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px;
+}
+
+.search-input {
+    width: 300px;
+    border-radius: 5px;
+}
