@@ -13,6 +13,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { GameListComponent } from './game-list/game-list.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FormsModule } from '@angular/forms';
     GameComponent,
     NavbarComponent,
     SignInComponent,
-    GameListComponent
+    GameListComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

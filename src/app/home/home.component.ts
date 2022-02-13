@@ -19,14 +19,14 @@ export class HomeComponent implements OnInit {
 
   constructor(private titleService : Title) {
     this.titleService.setTitle("Game Busters");
+    this.init();
   }
 
   init() {
-    this.games.fill(this.game2, 3, 49);
+    this.games.fill(this.game2, 5, 49);
   }
 
   ngOnInit(): void {
-    this.init();
   }
 
 }

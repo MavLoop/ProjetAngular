@@ -10,6 +10,6 @@
         <div class="genre">
             {{game.genre.title}}
         </div>
-        <button class="bt-details">Détails</button>
+        <button class="bt-details" [routerLink]="'/game/' + game.id ">Détails</button>
     </div>
 </div>
