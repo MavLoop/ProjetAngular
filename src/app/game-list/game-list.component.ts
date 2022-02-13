@@ -9,11 +9,18 @@ import { Game } from '../common/model/Game';
 export class GameListComponent implements OnInit {
 
   @Input()
-  games!: Game[];
+  public games!: Game[];
+  filteredGames!: Game[];
+  public filter!: string;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.filteredGames = this.games;
+  }
+
+  updateFilter() {
+    this.filteredGames = this.games.filter(value =>  value.title.toLowerCase().includes(this.filter.toLowerCase()));
   }
 
 }

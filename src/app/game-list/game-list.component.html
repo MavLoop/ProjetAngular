@@ -1,10 +1,9 @@
 <div class="search">
     <div>Rechercher un jeu</div>
     <div>
-        <input type="text" class="search-input">
-        <button>Rechercher</button>
+        <input type="text" name="search" class="search-input" [(ngModel)]="filter" (ngModelChange)="updateFilter()">
     </div>
 </div>
 <div class="cards">
-    <app-game *ngFor="let game of games" [game]="game" class="card"></app-game>
+    <app-game *ngFor="let game of filteredGames" [game]="game" class="card"></app-game>
 </div>

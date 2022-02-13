@@ -23,5 +23,7 @@
     background-color: antiquewhite;
     top: 0;
     position: sticky;
+    padding-left: 2%;
+    padding-right: 2%;
     height: 50px;
 }
