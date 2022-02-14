@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { Game } from '../common/model/Game';
-import { Genre } from '../common/model/Genre';
+import { Game } from '../../common/model/Game';
+import { Genre } from '../../common/model/Genre';
 
 @Component({
   selector: 'app-game-detail',
