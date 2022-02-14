@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AdminComponent } from './admin/admin.component';
 import { GameDetailComponent } from './game/game-detail/game-detail.component';
 import { GameComponent } from './game/game/game.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -20,7 +19,6 @@ import { SignUpComponent } from './connexion/sign-up/sign-up.component';
 @NgModule({
   declarations: [
     AppComponent,
-    AdminComponent,
     GameDetailComponent,
     GameComponent,
     NavbarComponent,
