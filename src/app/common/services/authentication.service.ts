@@ -13,11 +13,15 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient) { }
 
-  signin$(loginDto: LoginDTO): Observable<any> {
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
+    signin$(pseudo:string, password:string): Observable<any> {
     var uri = "login/signin";
-    return this.http.post(this.ROOT_URL+`/${uri}`, {
-      loginDto
-    });
+    return this.http.post<any>(this.ROOT_URL+`/${uri}`, {
+      pseudo,password
+    }, this.httpOptions);
   }
 }
 

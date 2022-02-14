@@ -22,7 +22,7 @@ export class UserService {
 
     _searchGamerById$(id: string): Observable<Gamer> {
       var uri = "user/gamer/" + id;
-      return this.http.get(`${this.ROOT_URL}/${uri}`);
+      return this.http.get<Gamer>(`${this.ROOT_URL}/${uri}`);
     }
 
     addGamer$(gamer: Gamer): Observable<Gamer> {
@@ -38,7 +38,7 @@ export class UserService {
 
     _searchModeratorById$(id: string): Observable<Moderator> {
       var uri = "user/moderator/" + id;
-      return this.http.get(`${this.ROOT_URL}/${uri}`);
+      return this.http.get<Moderator>(`${this.ROOT_URL}/${uri}`);
     }
 
     addModerator$(moderator: Moderator): Observable<Moderator> {

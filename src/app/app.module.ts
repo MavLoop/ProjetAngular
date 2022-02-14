@@ -9,7 +9,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SignInComponent } from './connexion/sign-in/sign-in.component';
 import { GameListComponent } from './game/game-list/game-list.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorComponent } from './error/error.component';
 import { HomeComponent } from './home/home.component';
 import { DashboardGamerComponent } from './dashboard/dashboard-gamer/dashboard-gamer.component';
@@ -36,7 +36,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     FontAwesomeModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
