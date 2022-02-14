@@ -15,6 +15,7 @@ import { HomeComponent } from './home/home.component';
 import { DashboardGamerComponent } from './dashboard/dashboard-gamer/dashboard-gamer.component';
 import { DashboardModeratorComponent } from './dashboard/dashboard-moderator/dashboard-moderator.component';
 import { SignUpComponent } from './connexion/sign-up/sign-up.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { SignUpComponent } from './connexion/sign-up/sign-up.component';
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

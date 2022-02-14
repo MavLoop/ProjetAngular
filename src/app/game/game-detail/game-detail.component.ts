@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Game } from '../../common/model/Game';
 import { Genre } from '../../common/model/Genre';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-game-detail',
@@ -19,7 +20,7 @@ export class GameDetailComponent implements OnInit {
   game3: Game = new Game(3, "Animal Crossing: New Horizons", "/assets/images/games/animal-crossing.jpg", "Animal crossing sur nintendo Switch", 88, new Genre(1, "FPS"));
   games = [this.game1, this.game2, this.game3];
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.id = params.get('id');
       if(this.id !== null) {
@@ -34,12 +35,13 @@ export class GameDetailComponent implements OnInit {
   }
 
   initGame(id: number): void {
-    console.log(this.games);
     for(let game of this.games) {
       if(game.id === id) {
         this.game = game;
-        console.log(game);
       }
     }
+    this.http.request('GET', '/api/platform/test').subscribe((data) => {
+      console.log(data);
+    });
   }
 }
