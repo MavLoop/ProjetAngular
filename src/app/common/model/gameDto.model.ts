@@ -8,6 +8,5 @@ export interface GameDto {
     genreName: string;
     editorName: string;
     platformNames: string[];
-    businessModelNames: string
-
+    businessModelName: string
 }
