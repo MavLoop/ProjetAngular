@@ -1,0 +1,12 @@
+form {
+    width: 60%;
+    margin: 50px auto;
+}
+
+.error {
+    color: red;
+}
+
+input.ng-invalid.ng-touched {
+    background-color: red;
+}
