@@ -5,6 +5,8 @@ import { Gamer } from '../model/gamer';
 import { environment } from 'src/environments/environment';
 import { PasswordDto } from '../model/password-dto';
 import { Moderator } from '../model/moderator';
+import { GamerDto } from '../model/gamer-dto';
+import { ModeratorDto } from '../model/moderator-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +17,9 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  // httpHeaders = new HttpHeaders()
-  //   .set('content-type', 'application/json')
-  //   .set('Access-Control-Allow-Origin', '*')
+  httpHeaders = new HttpHeaders()
+    .set('content-type', 'application/json')
+    .set('Access-Control-Allow-Origin', '*')
 
 
     _searchGamerById$(id: string): Observable<Gamer> {
@@ -25,7 +27,7 @@ export class UserService {
       return this.http.get<Gamer>(uri);
     }
 
-    addGamer$(gamer: Gamer): Observable<Gamer> {
+    addGamer$(gamer: GamerDto): Observable<Gamer> {
       var uri = "user/gamer/save";
       return this.http.post<Gamer>(uri, gamer);
       //,httpOptions)
@@ -41,7 +43,7 @@ export class UserService {
       return this.http.get<Moderator>(uri);
     }
 
-    addModerator$(moderator: Moderator): Observable<Moderator> {
+    addModerator$(moderator: ModeratorDto): Observable<Moderator> {
       var uri = "user/moderator/save";
       return this.http.post<Moderator>(uri, moderator);
       //,httpOptions)

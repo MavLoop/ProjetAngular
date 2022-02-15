@@ -6,10 +6,12 @@ import { GameDetailComponent } from './game/game-detail/game-detail.component';
 import { GameListComponent } from './game/game-list/game-list.component';
 import { HomeComponent } from './home/home.component';
 import { SignInComponent } from './connexion/sign-in/sign-in.component';
+import { SignUpComponent } from './connexion/sign-up/sign-up.component';
 
 const routes: Routes = [
   { path:"", component:HomeComponent},
   { path:"signin", component: SignInComponent },
+  { path:"signup", component: SignUpComponent },
   { path:"dashboard-gamer", component: DashboardGamerComponent},
   { path:"dashboard-moderator", component: DashboardModeratorComponent},
   { path:"games", component: GameListComponent},

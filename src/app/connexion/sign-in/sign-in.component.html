@@ -5,27 +5,31 @@
     </div>
     <div *ngIf="!pseudoForm.value.valid && (pseudoForm.value.dirty ||pseudoForm.value.touched)">
         <div [hidden]="!pseudoForm.value.errors?.['required']">
-            Email is required
+            Pseudo is required
         </div>
     </div>
 
     <div>
         <label>password : </label>
-        <input id="password" type="password" name="password" formControlName="password"/>
+        <input id="password" type="password" name="password" formControlName="password" />
     </div>
     <div *ngIf="!passwordForm.value.valid && (passwordForm.value.dirty ||passwordForm.value.touched)">
         <div [hidden]="!passwordForm.value.errors?.['required']">
             Password is required
         </div>
     </div>
-
+    <!-- SEPARATION DES BOUTONS -->
+    <input type="button" value="inscription" routerLink="signup" />
     <input type="submit" value="connexion" [disabled]="!profileForm.valid" />
-
 </form>
 
-<small class=" form-text text-muted alert-danger" style="margin-top: -10px;" role="alert" *ngIf="isLoginFailed">
-    Connexion refusée : {{ errorMessage }}
-</small>
+
+
+<div class="row form-text text-muted alert-danger">
+    <small class="" style="margin-top: -10px;" role="alert" *ngIf="isLoginFailed">
+        Connexion refusée : {{ errorMessage }}
+    </small>
+</div>
 
 <div class="container">
     <div class="row" *ngIf="isLoggedIn">
