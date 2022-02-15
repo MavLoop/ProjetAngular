@@ -2,13 +2,13 @@
     <img src=" {{game.image}} " alt="Game image" class="card-img" />
     <div class="centered">
         <div>
-            <p> {{game.title}} </p>
+            <p> {{game.name}} </p>
         </div>
         <div>
             {{game.description}}
         </div>
         <div class="genre">
-            {{game.genre.title}}
+            {{game.genre.name}}
         </div>
         <button class="bt-details" [routerLink]="'/game/' + game.id ">Détails</button>
     </div>

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Game } from '../../common/model/Game';
+import { GameTest } from 'src/app/common/model/game-model/GameTest';
 
 @Component({
   selector: 'app-game',
@@ -9,7 +9,7 @@ import { Game } from '../../common/model/Game';
 export class GameComponent implements OnInit {
 
   @Input()
-  public game!: Game;
+  public game!: GameTest;
 
   constructor() { }
 
