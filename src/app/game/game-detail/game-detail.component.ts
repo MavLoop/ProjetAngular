@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Game } from '../../common/model/Game';
 import { Genre } from '../../common/model/Genre';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-game-detail',
@@ -13,6 +14,7 @@ export class GameDetailComponent implements OnInit {
 
   @Input()
   id!: string | null;
+  gameId!: number;
   game!: Game;
 
   game1: Game = new Game(1, "Dying Light", "/assets/images/games/dying-light.jpg", "Good night, Good luck", 88, new Genre(1, "FPS"));
@@ -24,7 +26,8 @@ export class GameDetailComponent implements OnInit {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.id = params.get('id');
       if(this.id !== null) {
-        this.initGame(parseInt(this.id));
+        //this.initGame(parseInt(this.id));
+        this.gameId = parseInt(this.id);
       } else {
         this.router.navigate(['/error']);
       }
@@ -32,6 +35,7 @@ export class GameDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.initGame(this.gameId);
   }
 
   initGame(id: number): void {
@@ -40,7 +44,8 @@ export class GameDetailComponent implements OnInit {
         this.game = game;
       }
     }
-    this.http.request('GET', '/api/platform/test').subscribe((data) => {
+    let URI = '/platform/test'
+    this.http.request('GET', URI).subscribe((data) => {
       console.log(data);
     });
   }
