@@ -16,6 +16,7 @@ import { DashboardGamerComponent } from './dashboard/dashboard-gamer/dashboard-g
 import { DashboardModeratorComponent } from './dashboard/dashboard-moderator/dashboard-moderator.component';
 import { SignUpComponent } from './connexion/sign-up/sign-up.component';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
