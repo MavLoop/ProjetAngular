@@ -4,4 +4,5 @@ export interface Gamer {
     password:string
     email:string
     birthDate:string
+    admin:boolean
 }
