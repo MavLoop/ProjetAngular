@@ -8,19 +8,19 @@
         <li class="nav-item">
             <a routerLink="" class="nav-link" placement="bottom">Accueil</a>
         </li> 
-        <li class="nav-item">
+        <li class="nav-item" *ngIf='isLoggedIn'>
             <a routerLink="games" class="nav-link" placement="bottom">Catalogue</a>
         </li>
     </ul>
     <ul class="navbar-nav ml-auto">
       
-        <li class="nav-item">
+        <li class="nav-item" *ngIf='isLoggedIn && !hasModeratorRole'>
             <a class="nav-link" routerLink="dashboard-gamer">DASHBOARD GAMER</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf='isLoggedIn && hasModeratorRole'>
             <a class="nav-link" routerLink="dashboard-moderator">DASHBOARD MODERATEUR</a>
         </li>
-        <!-- <li class="nav-item" *ngIf='!isLoggedIn'>
+        <li class="nav-item" *ngIf='!isLoggedIn'>
             <a class="nav-link bg-white text-primary" routerLink="/">
                 <fa-icon [icon]="['fas', 'user']" size="1x" style="color: red;"></fa-icon>
             </a>
@@ -29,10 +29,6 @@
             <a class="nav-link bg-white text-primary text-center" (click)='onLogout()'>
                 <fa-icon [icon]="['fas', 'user']" size="1x" style="color: green;"></fa-icon>
             </a>
-        </li> -->
-        <li class="nav-item">
-            <!-- <a class="nav-link" (click)='openAbout()'>A propos</a> -->
-            <a class="nav-link">A propos</a>
         </li>
     </ul>
 </nav>
