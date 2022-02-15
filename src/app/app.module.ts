@@ -16,6 +16,7 @@ import { DashboardGamerComponent } from './dashboard/dashboard-gamer/dashboard-g
 import { DashboardModeratorComponent } from './dashboard/dashboard-moderator/dashboard-moderator.component';
 import { SignUpComponent } from './connexion/sign-up/sign-up.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AddGameComponent } from './game/add-game/add-game.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     DashboardGamerComponent,
     DashboardModeratorComponent,
-    SignUpComponent
+    SignUpComponent,
+    AddGameComponent
   ],
   imports: [
     BrowserModule,

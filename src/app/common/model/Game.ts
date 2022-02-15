@@ -1,6 +1,6 @@
 import { Genre } from "./Genre";
 
-export class Game {
+/*export class Game {
     id: number;
     title: string;
     image: string;
@@ -16,4 +16,17 @@ export class Game {
         this.score = score;
         this.genre = genre;
     }
+}*/
+
+export interface Game {
+    id: number;
+    name: string;
+    description: string;
+    releaseDate: Date;
+    classificationName: string;
+    genreName: string;
+    editorName: string;
+    platformNames: string[];
+    businessModelNames: string
+
 }
