@@ -1,13 +1,17 @@
 <p>game-detail works!</p>
-<app-add-game></app-add-game>
-<!-- <div>
+
+<div class="game-detail">
     <div>
-        {{ game.title }}
+        {{ game.name }}
+    </div>
+    <div>
+        <img *ngIf="game.image === null" src="/assets/images/games/default.jpg"/>
+        <img *ngIf="game.image !== null" src='/assets/images/games/{{game.id}}.jpg' />   
     </div>
     <div>
         {{ game.description }}
     </div>
     <div>
-        {{ game.genre.title }}
+        {{ game.genre.name }}
     </div>
 </div> -->

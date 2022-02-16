@@ -10,7 +10,7 @@ import { Game } from 'src/app/common/model/game.model';
 export class GameComponent implements OnInit {
 
   @Input()
-  public game!: Game;
+  public game!: GameTest;
 
   constructor() { }
 

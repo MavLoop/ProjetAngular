@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { SignInComponent } from './connexion/sign-in/sign-in.component';
 import { AddGameComponent } from './game/add-game/add-game.component';
 import { SignUpComponent } from './connexion/sign-up/sign-up.component';
+import { ManageGameListComponent } from './dashboard/dashboard-moderator/manage-game-list/manage-game-list.component';
 
 const routes: Routes = [
   { path:"", component:HomeComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path:"games", component: GameListComponent},
   { path:"game/:id", component: GameDetailComponent },
   { path:"game/save", component: AddGameComponent }
+  { path:"moderator/games", component: ManageGameListComponent }
 ];
 
 @NgModule({

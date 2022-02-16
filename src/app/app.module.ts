@@ -18,6 +18,12 @@ import { SignUpComponent } from './connexion/sign-up/sign-up.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddGameComponent } from './game/add-game/add-game.component';
+import { GameDescriptionPipe } from './common/pipes/game-description.pipe';
+import { MatCardModule } from '@angular/material/card';
+import { ManageGameListComponent } from './dashboard/dashboard-moderator/manage-game-list/manage-game-list.component';
+import { MatListModule } from '@angular/material/list';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -32,7 +38,9 @@ import { AddGameComponent } from './game/add-game/add-game.component';
     DashboardGamerComponent,
     DashboardModeratorComponent,
     SignUpComponent,
-    AddGameComponent
+    GameDescriptionPipe,
+    AddGameComponent,
+    ManageGameListComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +49,11 @@ import { AddGameComponent } from './game/add-game/add-game.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatListModule,
+    MatPaginatorModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
