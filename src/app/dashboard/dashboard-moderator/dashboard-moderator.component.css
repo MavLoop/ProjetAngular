@@ -1,0 +1,9 @@
+.management-module {
+    width: 20%;
+    height: 20%;
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    border: 1px solid black;
+    border-radius: 2px;
+}
