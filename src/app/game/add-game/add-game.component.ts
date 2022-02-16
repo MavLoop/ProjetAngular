@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors,
 import { BusinessModel } from 'src/app/common/model/business-model.model';
 import { Classification } from 'src/app/common/model/classification.model';
 import { Editor } from 'src/app/common/model/editor.model';
+import { GameDto } from 'src/app/common/model/gameDto.model';
 import { Genre } from 'src/app/common/model/genre.model';
 import { Platform } from 'src/app/common/model/platform.model';
 import { GameService } from 'src/app/common/services/game.service';
@@ -34,28 +35,29 @@ export class AddGameComponent implements OnInit {
   constructor(private fb: FormBuilder, private gameService: GameService) { }
 
   ngOnInit(): void {
-    this.genres = [{ id: 1, name: "genre 1" }, { id: 2, name: "genre 2" }];
+    /*this.genres = [{ id: 1, name: "genre 1" }, { id: 2, name: "genre 2" }];
     this.editors = [{ id: 1, name: "editor 1" }, { id: 2, name: "editor 2" }];
     this.classifications = [{ id: 1, name: "cassification 1" }, { id: 2, name: "classification 2" }];
     this.platforms = [{ id: 1, name: "platform 1" }, { id: 2, name: "platform 2" }];
-    this.businessModels = [{ id: 1, name: "businessModel 1" }, { id: 2, name: "businessModel 2" }];
+    this.businessModels = [{ id: 1, name: "businessModel 1" }, { id: 2, name: "businessModel 2" }];*/
+
     // Gettings all the genres from database
-    /*this.gameService.getAllGenres().subscribe({
+    this.gameService.getAllGenres().subscribe({
       next: (data) => this.genres = data,
       error: (error => console.error(error))
     });
     // Gettings all the editors from database
-    /*this.gameService.getAllEditors().subscribe({
+    this.gameService.getAllEditors().subscribe({
       next: (data) => this.editors = data,
       error: (error => console.error(error))
     });
     // Gettings all the classifications from database
-    /*this.gameService.getAllCassifications().subscribe({
+    this.gameService.getAllCassifications().subscribe({
       next: (data) => this.classifications = data,
       error: (error => console.error(error))
     });
     // Gettings all the platforms from database
-    /*this.gameService.getAllPlatforms().subscribe({
+    this.gameService.getAllPlatforms().subscribe({
       next: (data) => this.platforms = data,
       error: (error => console.error(error))
     });
@@ -63,7 +65,7 @@ export class AddGameComponent implements OnInit {
     this.gameService.getAllBusinessModels().subscribe({
       next: (data) => this.businessModels = data,
       error: (error => console.error(error))
-    });*/
+    });
 
   }
 
@@ -96,9 +98,25 @@ export class AddGameComponent implements OnInit {
 
   addGame() {
     console.log(this.addGameForm);
-    console.log(this.findInvalidControls(this.addGameForm))
+    console.log(this.findInvalidControls(this.addGameForm));
+    const gameDto: GameDto = {
+      name: this.addGameForm.value.name,
+      description: this.addGameForm.value.description,
+      releaseDate: this.addGameForm.value.releaseDate,
+      classificationName: this.addGameForm.value.classificationName,
+      genreName: this.addGameForm.value.genreName,
+      editorName: this.addGameForm.value.editorName,
+      platformNames: this.addGameForm.value.platformNames,
+      businessModelName: this.addGameForm.value.businessModelName
+    }
+    console.log(gameDto);
+    this.gameService.addGame(gameDto);
   }
-
+  /**
+   * 
+   * @param f FormGroup
+   * @returns a array of invalid controls
+   */
   findInvalidControls(f: FormGroup) {
     const invalid = [];
     const controls = f.controls;
@@ -127,7 +145,7 @@ export class AddGameComponent implements OnInit {
       console.log(this.addGameForm);
 
       return invalid ? { invalidReleaseDate: { value: date } } : null;
-    
+
     };
   }
 }
