@@ -8,6 +8,7 @@ export interface Game {
     id: number;
     name: string;
     description: string;
+    image: string;
     releaseDate: Date;
     classification: Classification;
     genre: Genre;

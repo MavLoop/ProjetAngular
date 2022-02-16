@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Observable, ReplaySubject } from 'rxjs';
-import { GameTest } from 'src/app/common/model/game-model/GameTest';
 import { GameListService } from 'src/app/game/game-list/game-list.service';
 import {DataSource} from '@angular/cdk/collections';
+import { Game } from 'src/app/common/model/game.model';
 
 @Component({
   selector: 'app-manage-game-list',
@@ -18,8 +18,8 @@ export class ManageGameListComponent implements OnInit {
   // MatPaginator Output
   //pageEvent!: PageEvent;
 
-  games!: GameTest[];
-  filteredGames!: GameTest[];
+  games!: Game[];
+  filteredGames!: Game[];
   displayedColumns: string[] = ['image', 'name', 'editor', 'operations'];
 
   constructor(private gameListService: GameListService) {
