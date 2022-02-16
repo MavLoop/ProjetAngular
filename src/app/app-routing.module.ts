@@ -18,7 +18,8 @@ const routes: Routes = [
   { path:"dashboard-moderator", component: DashboardModeratorComponent},
   { path:"games", component: GameListComponent},
   { path:"game/:id", component: GameDetailComponent },
-  { path:"games/save", component: AddGameComponent },
+  { path:"moderator/games/save", component: AddGameComponent },
+  { path:"moderator/games/update/:id", component: AddGameComponent },
   { path:"moderator/games", component: ManageGameListComponent }
 ];
 

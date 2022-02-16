@@ -1,5 +1,7 @@
+<h1 class="text-center" *ngIf="isAddMode">Ajout d'un Jeu</h1>
+<h1 class="text-center" *ngIf="!isAddMode">Modification d'un Jeu</h1>
 <div class="container">
-    <form [formGroup]="addGameForm" class="border border-primary border-2 rounded p-3" (ngSubmit)="addGame()">
+    <form [formGroup]="addGameForm" class="border border-primary border-2 rounded p-3" (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <label class="form-label" for="name">Nom : </label>
                 <input type="text" id="name" name="name" class="form-control" formControlName="name" class="form-control"/>
@@ -73,9 +75,10 @@
                     </option>
                   </select>
                 <div class="error" *ngIf="businessModelName.invalid && businessModelName.touched">
-                  <span class ="error">Le modèle éconnomique est requis</span>
+                  <span class ="error">Le modèle économique est requis</span>
                 </div>
             </div>
-            <input class="btn btn-primary mt-3" type="submit" value="Enregistrer" [disabled]="addGameForm.invalid">
+            <input class="btn mt-3" [ngClass]="{'btn-primary': isAddMode, 'btn-secondary': !isAddMode}" type="submit" 
+            [value]="isAddMode ? 'Ajouter': 'Modifier'" [disabled]="addGameForm.invalid">
     </form>
 </div>
