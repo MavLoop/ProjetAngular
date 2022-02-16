@@ -17,27 +17,27 @@ export class GameService {
   constructor(private http: HttpClient) { }
 
   getAllGenres(): Observable<Genre[]> {
-    return this.http.get<Genre[]>(`${this.ROOT_URL}/api/genre/all`);
+    return this.http.get<Genre[]>(`/genre/all`);
   }
 
   getAllEditors(): Observable<Editor[]> {
-    return this.http.get<Editor[]>(`${this.ROOT_URL}/api/editor/all`);
+    return this.http.get<Editor[]>(`/editor/all`);
   }
 
   getAllCassifications(): Observable<Classification[]> {
-    return this.http.get<Classification[]>(`${this.ROOT_URL}/api/classification/all`);
+    return this.http.get<Classification[]>(`/classification/all`);
   }
 
   getAllPlatforms(): Observable<Platform[]> {
-    return this.http.get<Platform[]>(`${this.ROOT_URL}/api/platform/all`);
+    return this.http.get<Platform[]>(`/platform/all`);
   }
   getAllBusinessModels(): Observable<BusinessModel[]> {
-    return this.http.get<BusinessModel[]>(`${this.ROOT_URL}/api/businessModel/all`);
+    return this.http.get<BusinessModel[]>(`/businessModel/all`);
   }
 
   addGame(gameDto: GameDto) {
-    return this.http.post<GameDto>(`${this.ROOT_URL}/api/game/save`, gameDto).subscribe({
-      next: (data) => {
+    return this.http.post<GameDto>(`/game/save`, gameDto).subscribe({
+      next: (data: any) => {
         console.log(`réponse => ${data}`);
         console.log("type réponse => " + typeof data);
       },

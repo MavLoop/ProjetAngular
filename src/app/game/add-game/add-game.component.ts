@@ -97,8 +97,6 @@ export class AddGameComponent implements OnInit {
   }
 
   addGame() {
-    console.log(this.addGameForm);
-    console.log(this.findInvalidControls(this.addGameForm));
     const gameDto: GameDto = {
       name: this.addGameForm.value.name,
       description: this.addGameForm.value.description,
@@ -109,7 +107,7 @@ export class AddGameComponent implements OnInit {
       platformNames: this.addGameForm.value.platformNames,
       businessModelName: this.addGameForm.value.businessModelName
     }
-    console.log(gameDto);
+    
     this.gameService.addGame(gameDto);
   }
   /**
