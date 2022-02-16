@@ -1,1 +1,39 @@
-<p>sign-up works!</p>
+<form [formGroup]="profileForm" (ngSubmit)="formSending()">
+    <div>
+        <label>Pseudo : </label>
+        <input id="pseudo" type="text" name="pseudo" formControlName="pseudo" />
+    </div>
+    <div *ngIf="!pseudoForm.value.valid && (pseudoForm.value.dirty ||pseudoForm.value.touched)">
+        <div [hidden]="!pseudoForm.value.errors?.['required']">
+            Pseudo is required
+        </div>
+    </div>
+    <div>
+        <label>Email : </label>
+        <input id="email" type="text" name="email" formControlName="email" />
+    </div>
+    <div *ngIf="!emailForm.value.valid && (emailForm.value.dirty ||emailForm.value.touched)">
+        <div [hidden]="!emailForm.value.errors?.['required']">
+            Email is required
+        </div>
+    </div>
+    <div>
+        <label>Password : </label>
+        <input id="password" type="password" name="password" formControlName="password" />
+    </div>
+    <div *ngIf="!passwordForm.value.valid && (passwordForm.value.dirty ||passwordForm.value.touched)">
+        <div [hidden]="!passwordForm.value.errors?.['required']">
+            Password is required
+        </div>
+    </div>
+    <div>
+        <label>Birthdate : </label>
+        <input id="birthdate" type="date" name="birthdate" formControlName="birthdate" />
+    </div>
+    <div *ngIf="!birthDateForm.value.valid && (birthDateForm.value.dirty ||birthDateForm.value.touched)">
+        <div [hidden]="!birthDateForm.value.errors?.['required']">
+            Birthdate is required
+        </div>
+    </div>
+    <input type="submit" value="connexion" [disabled]="!profileForm.valid" />
+</form>

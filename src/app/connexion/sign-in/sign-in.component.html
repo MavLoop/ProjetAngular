@@ -1,27 +1,54 @@
-<form [formGroup]="profileForm" (ngSubmit)="formSending()">
+<form *ngIf="!isLoggedIn" [formGroup]="profileForm" (ngSubmit)="formSending()">
     <div>
         <label>Pseudo : </label>
         <input id="pseudo" type="text" name="pseudo" formControlName="pseudo" />
     </div>
     <div *ngIf="!pseudoForm.value.valid && (pseudoForm.value.dirty ||pseudoForm.value.touched)">
         <div [hidden]="!pseudoForm.value.errors?.['required']">
-            Email is required
+            Pseudo is required
         </div>
     </div>
 
     <div>
         <label>password : </label>
-        <input id="password" type="text" name="password" formControlName="password"/>
+        <input id="password" type="password" name="password" formControlName="password" />
     </div>
     <div *ngIf="!passwordForm.value.valid && (passwordForm.value.dirty ||passwordForm.value.touched)">
         <div [hidden]="!passwordForm.value.errors?.['required']">
             Password is required
         </div>
+    </div>
+    <!-- SEPARATION DES BOUTONS -->
+    <input type="button" value="inscription" routerLink="signup" />
+    <input type="submit" value="connexion" [disabled]="!profileForm.valid" />
+</form>
 
+
+
+<div class="row form-text text-muted alert-danger">
+    <small class="" style="margin-top: -10px;" role="alert" *ngIf="isLoginFailed">
+        Connexion refusée : {{ errorMessage }}
+    </small>
+</div>
+
+<div class="container">
+    <div class="row" *ngIf="isLoggedIn">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="alert alert-info text-center">
+                Bienvenue {{gamer?.pseudo}} !
+            </div>
+        </div>
+        <div class="col-md-3"></div>
     </div>
 
-
-    <input type="submit" value="connexion" [disabled]="!profileForm.valid" />
-    <p>Form value: {{ profileForm.value | json }}</p>
-    <p>Form status: {{ profileForm.status | json }}</p>
-</form>
+    <div class="row" *ngIf="isLoggedIn">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="">
+                <button class="btn btn-danger btn-block" (click)="onLogout()">Ce n'est pas vous ?</button>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>

@@ -19,7 +19,7 @@ export class AuthenticationService {
 
     signin$(pseudo:string, password:string): Observable<any> {
     var uri = "login/signin";
-    return this.http.post<any>(this.ROOT_URL+`/${uri}`, {
+    return this.http.post<any>(uri, {
       pseudo,password
     }, this.httpOptions);
   }
