@@ -1,0 +1,81 @@
+<div class="container">
+    <form [formGroup]="addGameForm" class="border border-primary border-2 rounded p-3" (ngSubmit)="addGame()">
+            <div class="form-group">
+                <label class="form-label" for="name">Nom : </label>
+                <input type="text" id="name" name="name" class="form-control" formControlName="name" class="form-control"/>
+                <div class="error" *ngIf="name.invalid && name.touched">
+                  <span class ="error">Le nom est requis</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="editorName">Editeur : </label>
+                <select formControlName="editorName" id="editorName" name="editorName" class="form-control">
+                    <option *ngFor="let editor of editors" [ngValue]="editor.name">
+                      {{ editor.name }}
+                    </option>
+                  </select>
+                <div class="error" *ngIf="editorName.invalid && editorName.touched">
+                  <span class ="error">L'éditeur est requis</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="releaseDate">Date de sortie : </label>
+                <input type="date" id="releaseDate" name="releaseDate" class="form-control" formControlName="releaseDate" class="form-control"/>
+                <div class="error" *ngIf="releaseDate.invalid && releaseDate.touched">
+                  <span class ="error">La date de sortie doit être dans le passé</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="description">Description : </label>
+                <textarea formControlName="description" class="form-control" id="description" name="description" class="form-control"></textarea>
+                <div class="error" *ngIf="descript.invalid && descript.touched">
+                    <span class ="error">La description est requise</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="genreName">Genre : </label>
+                <select formControlName="genreName" id="genreName" name="genreName" class="form-control">
+                    <option *ngFor="let genre of genres" [ngValue]="genre.name">
+                      {{ genre.name }}
+                    </option>
+                  </select>
+                <div class="error" *ngIf="genreName.invalid && genreName.touched">
+                  <span class ="error">Le genre est requis</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="classificationName">Classification : </label>
+                <select formControlName="classificationName" id="classificationName" name="classificationName" class="form-control">
+                    <option *ngFor="let classification of classifications" [ngValue]="classification.name">
+                      {{ classification.name }}
+                    </option>
+                  </select>
+                <div class="error" *ngIf="classificationName.invalid && classificationName.touched">
+                  <span class ="error">La classification est requise</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="platformNames">Plateforme(s) : </label>
+                <select formControlName="platformNames" id="platformNames" name="platformNames" multiple class="form-control">
+                    <option *ngFor="let platform of platforms" [ngValue]="platform.name">
+                      {{ platform.name }}
+                    </option>
+                  </select>
+                <div class="error" *ngIf="platformNames.invalid && platformNames.touched">
+                  <span class ="error">Au moins une plateforme est requise</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="businessModelName">Modèle économique : </label>
+                <select formControlName="businessModelName" id="businessModelName" name="businessModelName" class="form-control">
+                    <option *ngFor="let businessModel of businessModels" [ngValue]="businessModel.name">
+                      {{ businessModel.name }}
+                    </option>
+                  </select>
+                <div class="error" *ngIf="businessModelName.invalid && businessModelName.touched">
+                  <span class ="error">Le modèle éconnomique est requis</span>
+                </div>
+            </div>
+            <input class="btn btn-primary mt-3" type="submit" value="Enregistrer" [disabled]="addGameForm.invalid">
+    </form>
+</div>

@@ -17,6 +17,7 @@ import { DashboardModeratorComponent } from './dashboard/dashboard-moderator/das
 import { SignUpComponent } from './connexion/sign-up/sign-up.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddGameComponent } from './game/add-game/add-game.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HomeComponent,
     DashboardGamerComponent,
     DashboardModeratorComponent,
-    SignUpComponent
+    SignUpComponent,
+    AddGameComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FontAwesomeModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
     BrowserAnimationsModule
   ],
   providers: [],
