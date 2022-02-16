@@ -11,27 +11,24 @@ import { GameListService } from './game-list.service';
 })
 export class GameListComponent implements OnInit {
 
-  test!: GameRequest | undefined;
-
-  @Input()
+  games!: GameTest[];
+  request!: GameRequest;
   filteredGames!: GameTest[];
   public filter!: string;
 
-
-  constructor(private titleService : Title, private gameListService: GameListService) {
+  constructor(private titleService: Title, private gameListService: GameListService) {
     this.titleService.setTitle("Game Busters");
-    this.test = gameListService.request;
-    if(this.test !== undefined) {
-      this.filteredGames = this.test.games;
-    }
-  }
-
-  ngOnInit(): void {
+    //this.gameListService.fetchGames().subscribe((data) => this.initGames(data));
+    this.gameListService.fetchGames().subscribe((data) => {this.games = data; this.filteredGames = this.games});
     
   }
+  
+  ngOnInit(): void { }
 
   updateFilter() {
-    //this.filteredGames = this.games.filter(value =>  value.title.toLowerCase().includes(this.filter.toLowerCase()));
+    console.log(this.games);
+    this.filteredGames = this.games.filter((value: { name: string; }) => value.name.toLowerCase().includes(this.filter.toLowerCase()));
+    console.log(this.filteredGames)
   }
 
 }

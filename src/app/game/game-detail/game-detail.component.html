@@ -1,8 +1,12 @@
 <p>game-detail works!</p>
 
-<div>
+<div class="game-detail">
     <div>
         {{ game.name }}
+    </div>
+    <div>
+        <img *ngIf="game.image === null" src="/assets/images/games/default.jpg"/>
+        <img *ngIf="game.image !== null" src='/assets/images/games/{{game.id}}.jpg' />   
     </div>
     <div>
         {{ game.description }}

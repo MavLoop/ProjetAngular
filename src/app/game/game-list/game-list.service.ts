@@ -22,7 +22,7 @@ export class GameListService {
     );*/
   }
 
-  fetchGames(): Observable<GameRequest> {
-    return this.http.get<GameRequest>('/game/all');
+  fetchGames(): Observable<GameTest[]> {
+    return this.http.get<GameTest[]>('/game/all');
   }
 }

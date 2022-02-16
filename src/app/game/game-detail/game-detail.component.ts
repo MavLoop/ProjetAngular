@@ -13,15 +13,14 @@ export class GameDetailComponent implements OnInit {
 
   @Input()
   id!: string | null;
-  gameId!: number;
+  //gameId!: number;
   game!: GameTest;
 
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.id = params.get('id');
       if(this.id !== null) {
-        //this.initGame(parseInt(this.id));
-        this.gameId = parseInt(this.id);
+        this.initGame(parseInt(this.id));
       } else {
         this.router.navigate(['/error']);
       }
@@ -29,13 +28,11 @@ export class GameDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.initGame(this.gameId);
+    
   }
 
   initGame(id: number): void {
-    let URI = '/platform/test'
-    this.http.request('GET', URI).subscribe((data) => {
-      console.log(data);
-    });
+    let URI = '/game/'+id;
+    this.http.request<GameTest>('GET', URI).subscribe((data) => {this.game = data});
   }
 }
