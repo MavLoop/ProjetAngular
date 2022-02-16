@@ -5,4 +5,13 @@ table {
 .table-img {
     width: 100px;
     height: 150px;
+    margin: 2px;
+}
+
+.bt-cell {
+    padding: auto;
+}
+
+.btn {
+    margin: 3px;
 }
