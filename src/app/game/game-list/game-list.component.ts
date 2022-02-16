@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Game } from 'src/app/common/model/game.model';
-import { GameListService } from './game-list.service';
+import { GameService } from 'src/app/common/services/game.service';
 
 @Component({
   selector: 'app-game-list',
@@ -14,9 +14,9 @@ export class GameListComponent implements OnInit {
   filteredGames!: Game[];
   public filter!: string;
 
-  constructor(private titleService: Title, private gameListService: GameListService) {
+  constructor(private titleService: Title, private gameService: GameService) {
     this.titleService.setTitle("Game Busters");
-    this.gameListService.fetchGames().subscribe((data) => {this.games = data; this.filteredGames = this.games});
+    this.gameService.getAllGames().subscribe((data) => {this.games = data; this.filteredGames = this.games});
   }
   
   ngOnInit(): void { }

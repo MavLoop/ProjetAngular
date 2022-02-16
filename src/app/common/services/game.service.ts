@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { BusinessModel } from '../model/business-model.model';
 import { Classification } from '../model/classification.model';
 import { Editor } from '../model/editor.model';
+import { Game } from '../model/game.model';
 import { GameDto } from '../model/gameDto.model';
 import { Genre } from '../model/genre.model';
 import { Platform } from '../model/platform.model';
@@ -13,7 +14,6 @@ import { Platform } from '../model/platform.model';
   providedIn: 'root'
 })
 export class GameService {
-  ROOT_URL = environment.PROJETFINAL_JEUXVIDEOS;
   constructor(private http: HttpClient) { }
 
   getAllGenres(): Observable<Genre[]> {
@@ -43,5 +43,17 @@ export class GameService {
       },
       error: (error => console.error(error))
     });
+  }
+
+  getAllGames(): Observable<Game[]> {
+    return this.http.get<Game[]>('/game/all');
+  }
+
+  getGameById(id: number): Observable<Game> {
+    return this.http.get<Game>('/game/'+id);
+  }
+
+  setGameImage(id: string): Observable<any> {
+    return this.http.patch(`/game/${id}/image`, 'body');
   }
 }
