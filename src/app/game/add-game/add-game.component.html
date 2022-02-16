@@ -22,7 +22,7 @@
                 <label class="form-label" for="releaseDate">Date de sortie : </label>
                 <input type="date" id="releaseDate" name="releaseDate" class="form-control" formControlName="releaseDate" class="form-control"/>
                 <div class="error" *ngIf="releaseDate.invalid && releaseDate.touched">
-                  <span class ="error">La date doit être dans le passé</span>
+                  <span class ="error">La date de sortie doit être dans le passé</span>
                 </div>
             </div>
             <div class="form-group">

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { BusinessModel } from 'src/app/common/model/business-model.model';
 import { Classification } from 'src/app/common/model/classification.model';
 import { Editor } from 'src/app/common/model/editor.model';
@@ -23,7 +23,7 @@ export class AddGameComponent implements OnInit {
   addGameForm: FormGroup = this.fb.group({
     name: ['', Validators.required],
     editorName: ['', Validators.required],
-    releaseDate: [''],
+    releaseDate: ['', this.releaseDateValidator()],
     description: ['', Validators.required],
     genreName: ['', Validators.required],
     classificationName: ['', Validators.required],
@@ -34,11 +34,11 @@ export class AddGameComponent implements OnInit {
   constructor(private fb: FormBuilder, private gameService: GameService) { }
 
   ngOnInit(): void {
-    this.genres = [{id: 1, name: "genre 1"}, {id: 2, name: "genre 2"}];
-    this.editors = [{id: 1, name: "editor 1"}, {id: 2, name: "editor 2"}];
-    this.classifications = [{id: 1, name: "cassification 1"}, {id: 2, name: "classification 2"}];
-    this.platforms = [{id: 1, name: "platform 1"}, {id: 2, name: "platform 2"}];
-    this.businessModels = [{id: 1, name: "businessModel 1"}, {id: 2, name: "businessModel 2"}];
+    this.genres = [{ id: 1, name: "genre 1" }, { id: 2, name: "genre 2" }];
+    this.editors = [{ id: 1, name: "editor 1" }, { id: 2, name: "editor 2" }];
+    this.classifications = [{ id: 1, name: "cassification 1" }, { id: 2, name: "classification 2" }];
+    this.platforms = [{ id: 1, name: "platform 1" }, { id: 2, name: "platform 2" }];
+    this.businessModels = [{ id: 1, name: "businessModel 1" }, { id: 2, name: "businessModel 2" }];
     // Gettings all the genres from database
     /*this.gameService.getAllGenres().subscribe({
       next: (data) => this.genres = data,
@@ -108,5 +108,26 @@ export class AddGameComponent implements OnInit {
       }
     }
     return invalid;
+  }
+  /**
+   * 
+   * @returns Custum Validator - releaseDate must be in the past
+   */
+
+  private releaseDateValidator(): ValidatorFn {
+    // return (control: AbstractControl): { [key: string]: any } | null => {
+    return (control: AbstractControl): ValidationErrors | null => {
+      let invalid = false;
+      const date = control.value;
+      console.log(`Date de sortie => ${date}`);
+      const currentDate = new Date();
+      console.log(`Date du jour => ${currentDate}`);
+      invalid = (new Date(date).valueOf()) > (currentDate.valueOf());
+      console.log(`invalid => ${invalid}`);
+      console.log(this.addGameForm);
+
+      return invalid ? { invalidReleaseDate: { value: date } } : null;
+    
+    };
   }
 }
