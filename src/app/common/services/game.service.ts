@@ -53,7 +53,7 @@ export class GameService {
     return this.http.get<Game>('/game/'+id);
   }
 
-  setGameImage(id: string): Observable<any> {
-    return this.http.patch(`/game/${id}/image`, 'body');
+  uploadGameImage(id: number, formData: FormData): Observable<any> {
+    return this.http.post('/game/image/'+id, formData);
   }
 }

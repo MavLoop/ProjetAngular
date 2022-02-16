@@ -10,13 +10,16 @@ import { GameService } from 'src/app/common/services/game.service';
 })
 export class UploadGameImageComponent implements OnInit {
 
-  id!: string;
-  pdfSrc!: string;
+  id!: number;
+  fileName!: string;
+  formData!: FormData;
 
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private gameService: GameService) {
     this.route.paramMap.subscribe((params: ParamMap) => {
       const id = params.get('id');
-      if(id === null) {
+      if(id !== null) {
+        this.id = parseInt(id);
+      } else {
         this.router.navigate(['/error']);
       }
     });
@@ -26,10 +29,28 @@ export class UploadGameImageComponent implements OnInit {
   }
 
   patchGame() {
-    this.gameService.setGameImage(this.id.toString());
+    console.log(this.formData);
+    this.gameService.uploadGameImage(this.id, this.formData).subscribe();
   }
 
-  onFileSelected() {
-    
-  }
+  onFileSelected(event: any) {
+
+    const file:File = event.target.files[0];
+    console.log(file);
+
+    if (file) {
+        this.fileName = file.name;
+
+        const formData = new FormData();
+
+        formData.append('file', file);
+
+        this.formData = formData;
+        //this.gameService.uploadGameImage(this.id, formData);
+
+        /*const upload$ = this.http.post("/game/image/"+this.id, formData);
+
+        upload$.subscribe();*/
+    }
+}
 }
