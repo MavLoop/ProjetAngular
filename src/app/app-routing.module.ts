@@ -1,6 +1,5 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardGamerComponent } from './dashboard/dashboard-gamer/dashboard-gamer.component';
 import { DashboardModeratorComponent } from './dashboard/dashboard-moderator/dashboard-moderator.component';
 import { GameDetailComponent } from './game/game-detail/game-detail.component';
 import { GameListComponent } from './game/game-list/game-list.component';
@@ -14,12 +13,12 @@ import { UploadGameImageComponent } from './dashboard/dashboard-moderator/manage
 import { AddReviewsComponent } from './reviews/add-reviews/add-reviews.component';
 import { ReviewsListComponent } from './reviews/reviews-list/reviews-list.component';
 import { NotConnectingErrorComponent } from './error/not-connecting-error/not-connecting-error.component';
+import { ReviewsDetailComponent } from './reviews/reviews-detail/reviews-detail.component';
 
 export const routes: Routes = [
   { path:"", component:HomeComponent},
   { path:"signin", component: SignInComponent },
   { path:"signup", component: SignUpComponent },
-  { path:"dashboard-gamer", component: DashboardGamerComponent},
   { path:"dashboard-moderator", component: DashboardModeratorComponent},
   { path:"games", component: GameListComponent},
   { path:"games/details/:id", component: GameDetailComponent },
@@ -27,6 +26,7 @@ export const routes: Routes = [
   { path:"moderator/games", component: ManageGameListComponent },
   { path:"game/:id/reviews", component: AddReviewsComponent},
   { path:"reviews/moderator/all",component:ReviewsListComponent},
+  { path:"reviews/moderator/reviews/:id",component:ReviewsDetailComponent},
   { path:"moderator/games/update/:id", component: AddGameComponent },
   { path:"moderator/games", component: ManageGameListComponent },
   { path:"games/upload/:id", component: UploadGameImageComponent },

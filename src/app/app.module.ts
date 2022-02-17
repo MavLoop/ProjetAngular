@@ -12,7 +12,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorComponent } from './error/error.component';
 import { HomeComponent } from './home/home.component';
-import { DashboardGamerComponent } from './dashboard/dashboard-gamer/dashboard-gamer.component';
 import { DashboardModeratorComponent } from './dashboard/dashboard-moderator/dashboard-moderator.component';
 import { SignUpComponent } from './connexion/sign-up/sign-up.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -31,6 +30,14 @@ import { AddReviewsComponent } from './reviews/add-reviews/add-reviews.component
 import { NotConnectingErrorComponent } from './error/not-connecting-error/not-connecting-error.component';
 import { ReviewsListComponent } from './reviews/reviews-list/reviews-list.component';
 import { UploadGameImageComponent } from './dashboard/dashboard-moderator/manage-game-list/upload-game-image/upload-game-image.component';
+import { ReviewsDetailComponent } from './reviews/reviews-detail/reviews-detail.component';
+import localeFr from '@angular/common/locales/fr';
+import localeFrExtra from '@angular/common/locales/extra/fr';
+import { registerLocaleData } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
+registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
 
 @NgModule({
   declarations: [
@@ -42,7 +49,6 @@ import { UploadGameImageComponent } from './dashboard/dashboard-moderator/manage
     GameListComponent,
     ErrorComponent,
     HomeComponent,
-    DashboardGamerComponent,
     DashboardModeratorComponent,
     SignUpComponent,
     GameDescriptionPipe,
@@ -51,7 +57,8 @@ import { UploadGameImageComponent } from './dashboard/dashboard-moderator/manage
     AddReviewsComponent,
     UploadGameImageComponent,
     ReviewsListComponent,
-    NotConnectingErrorComponent
+    NotConnectingErrorComponent,
+    ReviewsDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,6 +73,8 @@ import { UploadGameImageComponent } from './dashboard/dashboard-moderator/manage
     MatPaginatorModule,
     MatTableModule,
     MatDialogModule,
+    MatFormFieldModule,
+    MatButtonModule,
     RouterModule.forRoot(routes ,{ useHash: true }),
   ],
   providers: [],

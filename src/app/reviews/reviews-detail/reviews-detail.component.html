@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="col justify-content-center">
+
+        <div class="card border-info mb-3 text-center">
+            <div class="card-body text-info">
+                <h5 class="card-title">Avis de {{ reviews.gamer.pseudo.toUpperCase() }}</h5>
+                <div class="card-text">
+                    <label class="label" for="game">Nom du jeu : </label>
+                    <span>{{ reviews.game.name }}
+                    </span><br />
+                    <label class="label" for="sendingDate">Date de l'avis : </label>
+                    <span>{{ reviews.sendingDate | date : 'medium' : '' : 'fr-FR' }}</span><br />
+                    <label class="label" for="rating">Note attribuée : </label>
+                    <span>{{ reviews.rating }}</span><br />
+                    <label class="label" for="description">Description : </label>
+                    <span> {{ reviews.description }} </span><br />
+                    <input class="btn btn-info mt-3" type="button" value="retour"
+                        [routerLink]="['/reviews/moderator/all']">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

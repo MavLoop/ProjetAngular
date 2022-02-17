@@ -22,7 +22,6 @@ export class AddReviewsComponent implements OnInit {
 
   @Input()
   id!: string | null;
-  game!: Game;
 
   addReviewsDtoForm: FormGroup = this.fb.group({
     description: ['', [Validators.required, Validators.maxLength(500)]],
