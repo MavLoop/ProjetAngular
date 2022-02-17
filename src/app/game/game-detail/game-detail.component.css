@@ -1,6 +1,41 @@
 .game-detail {
-    top : 25%;
-    left: 25%;
-    width: 50%;
-    height: 50%;
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    height: fit-content;
+    padding: 1%;
+    gap: 5%;
+}
+
+.title {
+    margin: 40px;
+    margin-top: 0px;
+}
+
+.image {
+    height: 420px;
+    width: 300px;
+}
+
+.game-desc {
+    max-width: fit-content;
+    min-width: 300px;
+}
+
+.content {
+    margin: 0px;
+}
+
+.sub-content {
+    margin: 20px;
+}
+
+.pegi-icon {
+    width: 60px;
+}
+
+.platforms {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 10px;
 }

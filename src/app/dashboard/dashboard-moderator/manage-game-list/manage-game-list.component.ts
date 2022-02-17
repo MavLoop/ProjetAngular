@@ -14,6 +14,7 @@ export class ManageGameListComponent implements OnInit {
   length!: number;
   pageSize: number = 5;
   pageEvent!: PageEvent;
+  sort!: Sort;
 
   games!: Game[];
   filteredGames!: Game[];
@@ -21,12 +22,13 @@ export class ManageGameListComponent implements OnInit {
 
   constructor(private gameService: GameService) {
     if (this.pageEvent !== undefined) {
+      //this.pageEvent.pageIndex = 0;
+    } else {
+      this.fetchGames();
+      this.pageEvent = new PageEvent();
       this.pageEvent.pageIndex = 0;
+      this.pageEvent.pageSize = this.pageSize;
     }
-    this.fetchGames();
-    this.pageEvent = new PageEvent();
-    this.pageEvent.pageIndex = 0;
-    this.pageEvent.pageSize = this.pageSize;
   }
 
   ngOnInit(): void {
@@ -36,6 +38,10 @@ export class ManageGameListComponent implements OnInit {
     this.pageEvent = event;
     const low: number = event.pageIndex * event.pageSize;
     this.filteredGames = this.games.slice(low, low + event.pageSize);
+    console.log(this.sort);
+    if(this.sort.active) {
+      this.sortData(this.sort);
+    }
   }
 
   deleteGame(id: number) {
@@ -44,17 +50,19 @@ export class ManageGameListComponent implements OnInit {
 
   fetchGames() {
     this.gameService.getAllGames().subscribe((data) => {
+      if(this.pageEvent.pageIndex > 0 && (this.length-1) % this.pageSize === 0) {
+        --this.pageEvent.pageIndex;
+      }
       this.games = data;
-      this.filteredGames = this.games;
-      this.filteredGames = this.games.slice(0, this.pageSize);
+      this.filteredGames = this.games.slice(this.pageEvent.pageIndex * this.pageEvent.pageSize, this.pageEvent.pageIndex * this.pageEvent.pageSize + this.pageSize);
       this.length = this.games.length;
       this.pageEvent.length = this.length;
     });
   }
 
   sortData(sort: Sort) {
-    console.log(this.pageEvent.pageIndex);
-    const data = this.games.slice(this.pageEvent.pageIndex * this.pageEvent.pageSize, this.pageEvent.pageIndex * this.pageEvent.pageSize + this.pageEvent.pageSize);;
+    this.sort = sort;
+    const data = this.games.slice(this.pageEvent.pageIndex * this.pageEvent.pageSize, this.pageEvent.pageIndex * this.pageEvent.pageSize + this.pageEvent.pageSize);
     if (!sort.active || sort.direction === '') {
       this.filteredGames = data;
       return;

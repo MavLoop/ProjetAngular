@@ -1,19 +1,31 @@
-<p>game-detail works!</p>
-
 <div class="game-detail">
-    <div>
-        {{ game.name }}
+    <img class="image" *ngIf="game.image === null" src="/assets/images/games/default.jpg" />
+    <img class="image" *ngIf="game.image !== null" src="images/{{game.image}}" />
+    <div class="content">
+        <div>
+            <div class="title">
+                <h1> {{ game.name }} </h1>
+            </div>
+        </div>
+        <div class="game-desc sub-content">
+            <p> {{ game.description }} </p>
+        </div>
+        <div class="sub-content">
+            <p> Sorti le {{ game.releaseDate | date: 'longDate' : '' : 'fr-FR' }} </p>
+        </div>
+        <div class="genre sub-content">
+            <p>
+                Genre : {{ game.genre.name }}
+            </p>
+        </div>
+        <div class="platforms sub-content">
+            <p> Disponible sur {{platforms}} </p>
+        </div>
+        <div  class="sub-content">
+            <img class="pegi-icon" src="/assets/images/pegi-icons/{{game.classification.id}}.png" />
+        </div>
+        <div class="sub-content">
+            <button class="btn btn-primary" [routerLink]="'/game/'+game.id+'/reviews'">Poster un commentaire</button>
+        </div>
     </div>
-    <div>
-        <img *ngIf="game.image === null" src="/assets/images/games/default.jpg"/>
-        <img *ngIf="game.image !== null" src="images/{{game.image}}" />  
-    </div>
-    <div>
-        {{ game.description }}
-    </div>
-    <div>
-        {{ game.genre.name }}
-    </div>
-    <div>
-        <button mat-button [routerLink]="'/game/'+game.id+'/reviews'">Poster un commentaire</button>
-    </div>
+</div>

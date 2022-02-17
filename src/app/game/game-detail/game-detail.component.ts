@@ -11,9 +11,10 @@ import { GameService } from 'src/app/common/services/game.service';
 })
 export class GameDetailComponent implements OnInit {
 
-  @Input()
   id!: string | null;
+  @Input()
   game!: Game;
+  platforms!: string;
 
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private gameService: GameService) {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -31,7 +32,18 @@ export class GameDetailComponent implements OnInit {
   }
 
   initGame(id: number): void {
-    this.gameService.getGameById(id).subscribe((data) => {this.game = data});
+    this.gameService.getGameById(id).subscribe((data) => {this.game = data; this.initPlatforms();});
+
   }
 
+  initPlatforms() {
+    let variable = '';
+    for(let i = 0; i < this.game.platforms.length; i++) {
+      variable += ' '+this.game.platforms[i].name;
+      if(i!=this.game.platforms.length-1) {
+        variable+= ',';
+      }
+    }
+    this.platforms = variable;
+  }
 }
