@@ -27,7 +27,7 @@ export class AddGameComponent implements OnInit {
   addGameForm: FormGroup = this.fb.group({
     name: ['', Validators.required],
     editorName: ['', Validators.required],
-    releaseDate: ['', this.releaseDateValidator()],
+    releaseDate: [new Date().toISOString().slice(0, 10), [Validators.required, this.releaseDateValidator()]],
     description: ['', Validators.required],
     genreName: ['', Validators.required],
     classificationName: ['', Validators.required],
