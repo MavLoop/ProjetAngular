@@ -5,7 +5,7 @@
     <img mat-card-image *ngIf="game.image === null" src="/assets/images/games/default.jpg"/>
     <img mat-card-image *ngIf="game.image !== null" src="images/{{game.image}}" />  
     <mat-card-content>
-        {{ game.description | gameDescription:40 }}
+        {{ game.description | gameDescription:50 }}
     </mat-card-content>
     <mat-card-actions>
         <button class="btn btn-primary" [routerLink]="'/games/details/'+game.id">DETAILS</button>
