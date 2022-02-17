@@ -12,8 +12,6 @@
     min-height: 300px;
     width: 30%;
     height: 50%;
-    border: 1px solid black;
-    border-radius: 2px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -25,4 +23,9 @@
 
 .reviews-module {
     background: url(https://www.theparisreview.org/blog/wp-content/uploads/2012/09/crit.jpg) no-repeat;
+}
+
+.module-title {
+    background-color: black;
+    color: aliceblue;
 }
