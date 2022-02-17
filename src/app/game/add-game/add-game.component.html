@@ -24,7 +24,8 @@
                 <label class="form-label" for="releaseDate">Date de sortie : </label>
                 <input type="date" id="releaseDate" name="releaseDate" class="form-control" formControlName="releaseDate" class="form-control"/>
                 <div class="error" *ngIf="releaseDate.invalid && releaseDate.touched">
-                  <span class ="error">La date de sortie doit être dans le passé</span>
+                  <span class ="error" *ngIf="releaseDate?.errors?.['required']">La date de sortie est requise</span>
+                  <span class ="error" *ngIf="releaseDate?.errors?.['invalidReleaseDate']">La date de sortie doit être dans le passé</span>
                 </div>
             </div>
             <div class="form-group">
@@ -81,4 +82,12 @@
             <input class="btn mt-3" [ngClass]="{'btn-primary': isAddMode, 'btn-secondary': !isAddMode}" type="submit" 
             [value]="isAddMode ? 'Ajouter': 'Modifier'" [disabled]="addGameForm.invalid">
     </form>
+     <app-success [message]="success"
+     *ngIf="success!=='null'"
+     (close)="handleSuccess()"></app-success> 
+    <!-- <app-error>
+      [messageError]="error"
+      *ngIf="error!=='null'"
+      (close)="handleError()">
+     </app-error> -->
 </div>
