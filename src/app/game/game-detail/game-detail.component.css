@@ -1,6 +1,42 @@
-.game-detail {
-    top : 25%;
-    left: 25%;
-    width: 50%;
-    height: 50%;
+game-detail {
+    display: flex;
+    flex-flow: row wrap;
+    max-width: 50vw;
+}
+
+.button {
+    position: sticky;
+}
+
+.title {
+    margin: 40px;
+    margin-top: 0px;
+}
+
+.image {
+    height: 420px;
+    width: 300px;
+}
+
+.game-desc {
+    max-width: 250px;
+}
+
+.content {
+    margin: 0px;
+    width: fit-content;
+}
+
+.sub-content {
+    margin: 20px;
+}
+
+.pegi-icon {
+    width: 60px;
+}
+
+.platforms {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 10px;
 }

@@ -1,2 +1,14 @@
-<h1>Oops !</h1>
-<p>Something went wrong.</p>
+<div class="backdrop" (click)="onCloseError()"></div>
+<div class="modal-content alert alert-danger alert-box">
+    <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" (click)="onCloseError()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>{{ messageError }}</p>
+    </div>
+    <div class="modal-footer alert-box-actions" >
+        <button class="btn btn-primary" [routerLink]="'/moderator/games'">Retour</button>
+    </div>
+</div>

@@ -1,13 +1,15 @@
-<mat-card>
-    <mat-card-header>
-        <mat-card-title> {{ game.name }} </mat-card-title>
-    </mat-card-header>
-    <img mat-card-image *ngIf="game.image === null" src="/assets/images/games/default.jpg"/>
-    <img mat-card-image *ngIf="game.image !== null" src="images/{{game.image}}" />  
-    <mat-card-content>
-        {{ game.description | gameDescription:40 }}
-    </mat-card-content>
-    <mat-card-actions>
-        <button class="btn btn-primary" [routerLink]="'/games/details/'+game.id">DETAILS</button>
-    </mat-card-actions>
-</mat-card>
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" *ngIf="game.image === null" src="/assets/images/games/default.jpg"/>
+    <img class="card-img-top" *ngIf="game.image !== null" src="images/{{game.image}}" />
+    <div class="card-body">
+        <h4 class="card-title">{{ game.name }}</h4>
+        <h5> {{game.releaseDate | date : 'longDate' : '' : 'fr-FR' }} </h5>
+        <p class="card-text"> {{game.description | gameDescription:60}} </p>
+        <div class="actions">
+            <button class="btn btn-primary" [routerLink]="'/games/details/'+game.id">DETAILS</button>
+            <div>
+                <img class="pegi-icon" src="/assets/images/pegi-icons/{{game.classification.id}}.png" alt="pegi">
+            </div>
+        </div>
+    </div>
+</div>

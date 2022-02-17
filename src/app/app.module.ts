@@ -31,11 +31,15 @@ import { NotConnectingErrorComponent } from './error/not-connecting-error/not-co
 import { ReviewsListComponent } from './reviews/reviews-list/reviews-list.component';
 import { UploadGameImageComponent } from './dashboard/dashboard-moderator/manage-game-list/upload-game-image/upload-game-image.component';
 import { ReviewsDetailComponent } from './reviews/reviews-detail/reviews-detail.component';
-import localeFr from '@angular/common/locales/fr';
-import localeFrExtra from '@angular/common/locales/extra/fr';
 import { registerLocaleData } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { SuccessComponent } from './success/success.component';
+import { MatSortModule } from '@angular/material/sort';
+import { GameReviewComponent } from './game/game-detail/game-review/game-review.component';
+import localeFr from '@angular/common/locales/fr';
+import localeFrExtra from '@angular/common/locales/extra/fr';
+import { registerLocaleData } from '@angular/common';
 
 registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
 
@@ -58,7 +62,9 @@ registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
     UploadGameImageComponent,
     ReviewsListComponent,
     NotConnectingErrorComponent,
+    SuccessComponent,
     ReviewsDetailComponent,
+    GameReviewComponent
   ],
   imports: [
     BrowserModule,
@@ -73,6 +79,7 @@ registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
     MatPaginatorModule,
     MatTableModule,
     MatDialogModule,
+    MatSortModule,
     MatFormFieldModule,
     MatButtonModule,
     RouterModule.forRoot(routes ,{ useHash: true }),
