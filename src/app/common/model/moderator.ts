@@ -1,7 +1,8 @@
-export interface Moderator {
-    id:string
-    pseudo:string
-    password:string
-    email:string
-    phoneNumber:string
+export class Moderator {
+    id!:number
+    pseudo!:string
+    password!:string
+    email!:string
+    phoneNumber!:string
+    admin!:boolean
 }

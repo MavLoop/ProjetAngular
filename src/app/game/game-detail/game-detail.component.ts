@@ -33,4 +33,5 @@ export class GameDetailComponent implements OnInit {
     let URI = '/game/'+id;
     this.http.request<Game>('GET', URI).subscribe((data) => {this.game = data});
   }
+
 }

@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { BusinessModel } from '../model/business-model.model';
 import { Classification } from '../model/classification.model';
 import { Editor } from '../model/editor.model';
+import { Game } from '../model/game.model';
 import { GameDto } from '../model/gameDto.model';
 import { Genre } from '../model/genre.model';
 import { Platform } from '../model/platform.model';
@@ -44,4 +45,20 @@ export class GameService {
       error: (error => console.error(error))
     });
   }
+
+  _searchGameById$(id: string): Observable<Game> {
+    var uri = "game/" + id;
+    return this.http.get<Game>(uri);
+  }
+
+  _searchAllGame$(): Observable<Game> {
+    var uri = "game/all";
+    return this.http.get<Game>(uri);
+  }
+
+  _deleteGame$(id: string): Observable<any> {
+    var uri = id + "/delete";
+    return this.http.delete<any>(uri);
+  }
+  
 }

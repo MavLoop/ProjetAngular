@@ -9,8 +9,12 @@ import { SignInComponent } from './connexion/sign-in/sign-in.component';
 import { AddGameComponent } from './game/add-game/add-game.component';
 import { SignUpComponent } from './connexion/sign-up/sign-up.component';
 import { ManageGameListComponent } from './dashboard/dashboard-moderator/manage-game-list/manage-game-list.component';
+import { AddReviewsComponent } from './reviews/add-reviews/add-reviews.component';
+import { ErrorComponent } from './error/error.component';
+import { NotConnectingErrorComponent } from './error/not-connecting-error/not-connecting-error.component';
+import { ReviewsListComponent } from './reviews/reviews-list/reviews-list.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path:"", component:HomeComponent},
   { path:"signin", component: SignInComponent },
   { path:"signup", component: SignUpComponent },
@@ -19,7 +23,12 @@ const routes: Routes = [
   { path:"games", component: GameListComponent},
   { path:"game/:id", component: GameDetailComponent },
   { path:"games/save", component: AddGameComponent },
-  { path:"moderator/games", component: ManageGameListComponent }
+  { path:"moderator/games", component: ManageGameListComponent },
+  { path:"game/:id/reviews", component: AddReviewsComponent},
+  { path:"reviews/moderator/all",component:ReviewsListComponent},
+  { path: "error", component:ErrorComponent},
+  { path: 'error-not-connecting', component: NotConnectingErrorComponent},
+  { path:'**', redirectTo:'', pathMatch: 'full'}
 ];
 
 @NgModule({

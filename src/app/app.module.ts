@@ -24,6 +24,11 @@ import { ManageGameListComponent } from './dashboard/dashboard-moderator/manage-
 import { MatListModule } from '@angular/material/list';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import { AddReviewsComponent } from './reviews/add-reviews/add-reviews.component';
+import { ReviewsListComponent } from './reviews/reviews-list/reviews-list.component';
+import { NotConnectingErrorComponent } from './error/not-connecting-error/not-connecting-error.component';
+import { RouterModule } from '@angular/router';
+import { routes }   from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -40,7 +45,10 @@ import { MatTableModule } from '@angular/material/table';
     SignUpComponent,
     GameDescriptionPipe,
     AddGameComponent,
-    ManageGameListComponent
+    ManageGameListComponent,
+    AddReviewsComponent,
+    ReviewsListComponent,
+    NotConnectingErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +61,8 @@ import { MatTableModule } from '@angular/material/table';
     MatCardModule,
     MatListModule,
     MatPaginatorModule,
-    MatTableModule
+    MatTableModule,
+    RouterModule.forRoot(routes ,{ useHash: true }),
   ],
   providers: [],
   bootstrap: [AppComponent]
