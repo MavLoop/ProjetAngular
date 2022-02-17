@@ -1,26 +1,30 @@
 <form *ngIf="!isLoggedIn" [formGroup]="profileForm" (ngSubmit)="formSending()">
-    <div>
-        <label>Pseudo : </label>
-        <input id="pseudo" type="text" name="pseudo" formControlName="pseudo" />
+    <div class="form-group">
+        <label class="form-label">Pseudo</label>
+        <input id="pseudo" type="text" name="pseudo" class="form-control" formControlName="pseudo" />
     </div>
-    <div *ngIf="!pseudoForm.value.valid && (pseudoForm.value.dirty ||pseudoForm.value.touched)">
-        <div [hidden]="!pseudoForm.value.errors?.['required']">
-            Pseudo is required
-        </div>
+    <div *ngIf="!pseudoForm.valid && (pseudoForm.dirty ||pseudoForm.touched)">
+        <span class="error">
+            Le pseudo est requis
+        </span>
     </div>
 
-    <div>
-        <label>password : </label>
-        <input id="password" type="password" name="password" formControlName="password" />
+    <div class="form-group">
+        <label class="form-label">Password</label>
+        <input id="password" type="password" name="password"  class="form-control" formControlName="password" />
     </div>
-    <div *ngIf="!passwordForm.value.valid && (passwordForm.value.dirty ||passwordForm.value.touched)">
-        <div [hidden]="!passwordForm.value.errors?.['required']">
-            Password is required
+    <div *ngIf="!passwordForm.valid && (passwordForm.dirty ||passwordForm.touched)">
+        <div class="error">
+            Le mot de passe est requis
         </div>
     </div>
     <!-- SEPARATION DES BOUTONS -->
-    <input type="button" value="inscription" routerLink="signup" />
-    <input type="submit" value="connexion" [disabled]="!profileForm.valid" />
+    <div class="d-flex justify-content-around form-group">
+        <button type="submit" class="btn btn-primary" routerLink="signup">inscription</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!profileForm.valid">connexion</button>
+    </div>
+    <!-- <input type="button" value="inscription" routerLink="signup" />
+    <input type="submit" value="connexion" [disabled]="!profileForm.valid" /> -->
 </form>
 
 
