@@ -16,7 +16,7 @@ export class SignUpComponent implements OnInit {
   constructor(private fb:FormBuilder, private userService : UserService) { }
 
   profileForm = this.fb.group({
-    pseudo: ['', [Validators.required,/* Validators.pattern('^([A-Za-z0-9]+)*')*/]],
+    pseudo: ['', [Validators.required, Validators.pattern('^([A-Za-z0-9]+)*')]],
     birthdate:['', [Validators.required]],
     email:['',  [Validators.required, Validators.email]],
     password:['', [Validators.required, Validators.minLength(6)]]
