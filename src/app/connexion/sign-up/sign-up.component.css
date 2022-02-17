@@ -1,0 +1,21 @@
+.login-form {
+    width: 50%;
+    height: 70%;
+    left: 200px;
+    top: 15%;
+}
+
+.form-group {
+    /*margin: 10px;*/
+    padding: 10px;
+    width: 20%;
+    margin: 10px auto;
+}
+
+.error {
+    color: red;
+}
+
+input.ng-invalid.ng-touched {
+    background-color: red;
+}
