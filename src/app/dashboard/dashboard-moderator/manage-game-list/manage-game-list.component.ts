@@ -21,9 +21,7 @@ export class ManageGameListComponent implements OnInit {
   displayedColumns: string[] = ['image', 'name', 'editor', 'operations'];
 
   constructor(private gameService: GameService) {
-    if (this.pageEvent !== undefined) {
-      //this.pageEvent.pageIndex = 0;
-    } else {
+    if (this.pageEvent === undefined) {
       this.fetchGames();
       this.pageEvent = new PageEvent();
       this.pageEvent.pageIndex = 0;
@@ -38,7 +36,6 @@ export class ManageGameListComponent implements OnInit {
     this.pageEvent = event;
     const low: number = event.pageIndex * event.pageSize;
     this.filteredGames = this.games.slice(low, low + event.pageSize);
-    console.log(this.sort);
     if(this.sort.active) {
       this.sortData(this.sort);
     }

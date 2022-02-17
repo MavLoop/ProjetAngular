@@ -29,6 +29,10 @@ export class ReviewsService {
     return this.http.get<Reviews[]>(uri);
   }
 
+  _searchAllByGameId(id: number): Observable<Reviews[]> {
+    return this.http.get<Reviews[]>('/reviews/game/'+id);
+  }
+
   _deleteReviews$(id:string): Observable<any> {
     var uri = "reviews/"+ id +"/delete";
     return this.http.get<any>(uri);

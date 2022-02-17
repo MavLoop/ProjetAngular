@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Reviews } from 'src/app/common/model/reviews.model';
 
 @Component({
   selector: 'app-game-review',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./game-review.component.css']
 })
 export class GameReviewComponent implements OnInit {
+
+  @Input()
+  review!: Reviews;
 
   constructor() { }
 
