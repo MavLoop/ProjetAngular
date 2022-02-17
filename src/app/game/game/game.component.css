@@ -25,3 +25,15 @@
     border: 1px solid rgb(0, 140, 255);
     border-radius: 5px;
 }
+
+.actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pegi-icon {
+    height: 38px;
+    width: 33px;
+}

@@ -22,25 +22,23 @@ export class ManageGameListComponent implements OnInit {
     if(this.pageEvent !== undefined) {
       this.pageEvent.pageIndex = 1;
     }
-    this.initGames();
+    this.fetchGames();
   }
 
   ngOnInit(): void {
-
   }
 
   getPaginatorData(event: PageEvent): void {
     this.pageEvent = event;
     const low: number = event.pageIndex * event.pageSize;
-    console.log('Low : ' + low, 'High : ' + (low + event.pageSize));
     this.filteredGames = this.games.slice(low, low + event.pageSize);
   }
 
   deleteGame(id: number) {
-    this.gameService.deleteGameById(id).subscribe(() => this.initGames());
+    this.gameService.deleteGameById(id).subscribe(() => this.fetchGames());
   }
 
-  initGames() {
+  fetchGames() {
     this.gameService.getAllGames().subscribe((data) => {this.games = data; this.filteredGames = this.games; this.filteredGames = this.games.slice(0, this.pageSize); this.length = this.games.length});
   }
 }

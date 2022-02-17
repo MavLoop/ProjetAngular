@@ -5,12 +5,6 @@
     padding: 10px;
 }
 
-.card {
-    border: 1px solid black;
-    width: 200px;
-    height: fit-content;
-}
-
 .search {
     display: flex;
     flex-direction: column;
