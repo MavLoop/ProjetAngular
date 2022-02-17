@@ -1,6 +1,11 @@
 <p>dashboard-moderator works!</p>
 YOLO MODERATOR
-
-<div class="management-module" [routerLink]="'/moderator/games'">
-    Gestion des jeux
+<div class="module-container">
+    <div class="management-module games-module" [routerLink]="'/moderator/games'">
+        Gestion des jeux
+    </div>
+    
+    <div class="management-module reviews-module" [routerLink]="'/moderator/reviews'">
+        Gestion des avis
+    </div>
 </div>
