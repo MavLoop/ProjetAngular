@@ -57,4 +57,20 @@ export class GameService {
   deleteGameById(id: number) {
     return this.http.delete('/game/'+id+'/delete');
   }
+
+  _searchGameById$(id: string): Observable<Game> {
+    var uri = "game/" + id;
+    return this.http.get<Game>(uri);
+  }
+
+  _searchAllGame$(): Observable<Game> {
+    var uri = "game/all";
+    return this.http.get<Game>(uri);
+  }
+
+  _deleteGame$(id: string): Observable<any> {
+    var uri = id + "/delete";
+    return this.http.delete<any>(uri);
+  }
+  
 }
