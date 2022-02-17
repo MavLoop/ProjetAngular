@@ -39,7 +39,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { GameReviewComponent } from './game/game-detail/game-review/game-review.component';
 import localeFr from '@angular/common/locales/fr';
 import localeFrExtra from '@angular/common/locales/extra/fr';
-import { registerLocaleData } from '@angular/common';
+
 
 registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
 
