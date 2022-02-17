@@ -6,7 +6,7 @@
     </div>
     <div>
         <img *ngIf="game.image === null" src="/assets/images/games/default.jpg"/>
-        <img *ngIf="game.image !== null" src='/assets/images/games/{{game.id}}.jpg' />   
+        <img *ngIf="game.image !== null" src="images/{{game.image}}" />  
     </div>
     <div>
         {{ game.description }}
@@ -14,4 +14,4 @@
     <div>
         {{ game.genre.name }}
     </div>
-</div> -->
+</div>

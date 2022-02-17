@@ -57,4 +57,8 @@ export class GameService {
   uploadGameImage(id: number, formData: FormData): Observable<any> {
     return this.http.post('/game/image/'+id, formData);
   }
+
+  deleteGameById(id: number) {
+    return this.http.delete('/game/'+id+'/delete');
+  }
 }
