@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { tap } from 'rxjs';
 import { GameService } from 'src/app/common/services/game.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class UploadGameImageComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private gameService: GameService) {
     this.route.paramMap.subscribe((params: ParamMap) => {
       const id = params.get('id');
-      if(id !== null) {
+      if (id !== null) {
         this.id = parseInt(id);
       } else {
         this.router.navigate(['/error']);
@@ -25,32 +26,26 @@ export class UploadGameImageComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   patchGame() {
     console.log(this.formData);
-    this.gameService.uploadGameImage(this.id, this.formData).subscribe();
+    this.gameService.uploadGameImage(this.id, this.formData).pipe(tap({ next: () => this.router.navigate(["/moderator/games"]), error: (error) => console.log(error) })).subscribe();
   }
 
   onFileSelected(event: any) {
 
-    const file:File = event.target.files[0];
+    const file: File = event.target.files[0];
     console.log(file);
 
     if (file) {
-        this.fileName = file.name;
+      this.fileName = file.name;
 
-        const formData = new FormData();
+      const formData = new FormData();
 
-        formData.append('file', file);
+      formData.append('file', file);
 
-        this.formData = formData;
-        //this.gameService.uploadGameImage(this.id, formData);
-
-        /*const upload$ = this.http.post("/game/image/"+this.id, formData);
-
-        upload$.subscribe();*/
+      this.formData = formData;
     }
-}
+  }
 }
