@@ -6,9 +6,8 @@
     margin: 5px;
 }
 
-.card-img {
-    width: 200px;
-    height: 250px;
+.card-img-top {
+    height: 430px;
 }
 
 .centered {
@@ -24,4 +23,16 @@
     background-color: aqua;
     border: 1px solid rgb(0, 140, 255);
     border-radius: 5px;
+}
+
+.actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pegi-icon {
+    height: 38px;
+    width: 33px;
 }

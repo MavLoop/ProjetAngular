@@ -32,6 +32,13 @@ import { NotConnectingErrorComponent } from './error/not-connecting-error/not-co
 import { ReviewsListComponent } from './reviews/reviews-list/reviews-list.component';
 import { UploadGameImageComponent } from './dashboard/dashboard-moderator/manage-game-list/upload-game-image/upload-game-image.component';
 import { SuccessComponent } from './success/success.component';
+import { MatSortModule } from '@angular/material/sort';
+import { GameReviewComponent } from './game/game-detail/game-review/game-review.component';
+import localeFr from '@angular/common/locales/fr';
+import localeFrExtra from '@angular/common/locales/extra/fr';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
 
 @NgModule({
   declarations: [
@@ -53,7 +60,8 @@ import { SuccessComponent } from './success/success.component';
     UploadGameImageComponent,
     ReviewsListComponent,
     NotConnectingErrorComponent,
-    SuccessComponent
+    SuccessComponent,
+    GameReviewComponent
   ],
   imports: [
     BrowserModule,
@@ -68,6 +76,7 @@ import { SuccessComponent } from './success/success.component';
     MatPaginatorModule,
     MatTableModule,
     MatDialogModule,
+    MatSortModule,
     RouterModule.forRoot(routes ,{ useHash: true }),
   ],
   providers: [],

@@ -6,7 +6,7 @@ export interface Reviews {
     id:number
     description:string
     sendingDate:Date
-    note:number
+    rating:number
     gamer:Gamer
     game:Game
     moderator: Moderator
