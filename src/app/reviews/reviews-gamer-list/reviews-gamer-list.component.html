@@ -26,7 +26,7 @@
             <th mat-header-cell *matHeaderCellDef>Statut</th>
             <td mat-cell *matCellDef="let element">
                 <a class="nav-link bg-white text-primary text-center" *ngIf=" element.moderator === null ">
-                    <fa-icon [icon]="['fas', 'question']" size="1x" style="color: red;"></fa-icon>
+                    <fa-icon [icon]="['fas', 'circle']" size="1x" style="color: red;"></fa-icon>
                 </a>
                 <a class="nav-link bg-white text-primary text-center" *ngIf=" element.moderator !== null ">
                     <fa-icon [icon]="['fas', 'check-circle']" size="1x" style="color: green;"></fa-icon>
@@ -47,7 +47,7 @@
         <ng-container matColumnDef="Operations">
             <th mat-header-cell *matHeaderCellDef>Opérations</th>
             <td mat-cell *matCellDef="let element" class="bt-cell">
-                <span>
+                <!-- <span>
                     <button class="btn btn-info" [routerLink]="'/reviews/moderator/reviews/'+element.id">Voir</button>
                 </span>
                 <span>
@@ -58,7 +58,7 @@
                 </span>
                 <span>
                     <button class="btn btn-danger" (click)="deleteReviews(element.id)">Supprimer</button>
-                </span>
+                </span> -->
             </td>
         </ng-container>
 

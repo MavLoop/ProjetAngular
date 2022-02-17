@@ -27,9 +27,9 @@ export class UserService {
       return this.http.get<Gamer>(uri);
     }
 
-    addGamer$(gamer: GamerDto): Observable<Gamer> {
-      var uri = "user/gamer/save";
-      return this.http.post<Gamer>(uri, gamer);
+    addGamer$(gamerDto: GamerDto): Observable<Gamer> {
+      var uri = "/user/gamer/save";
+      return this.http.post<Gamer>(uri, gamerDto);
     }
 
     _patchGamerById$(id: string, password: PasswordDto): Observable<any> {

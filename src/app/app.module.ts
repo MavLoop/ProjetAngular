@@ -31,7 +31,6 @@ import { NotConnectingErrorComponent } from './error/not-connecting-error/not-co
 import { ReviewsListComponent } from './reviews/reviews-list/reviews-list.component';
 import { UploadGameImageComponent } from './dashboard/dashboard-moderator/manage-game-list/upload-game-image/upload-game-image.component';
 import { ReviewsDetailComponent } from './reviews/reviews-detail/reviews-detail.component';
-import { registerLocaleData } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { SuccessComponent } from './success/success.component';
@@ -40,6 +39,8 @@ import { GameReviewComponent } from './game/game-detail/game-review/game-review.
 import localeFr from '@angular/common/locales/fr';
 import localeFrExtra from '@angular/common/locales/extra/fr';
 import { registerLocaleData } from '@angular/common';
+import { ReviewsGamerListComponent } from './reviews/reviews-gamer-list/reviews-gamer-list.component';
+import { SuccessSignUpComponent } from './success-sign-up/success-sign-up.component';
 
 registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
 
@@ -64,7 +65,9 @@ registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
     NotConnectingErrorComponent,
     SuccessComponent,
     ReviewsDetailComponent,
-    GameReviewComponent
+    GameReviewComponent,
+    ReviewsGamerListComponent,
+    SuccessSignUpComponent
   ],
   imports: [
     BrowserModule,
