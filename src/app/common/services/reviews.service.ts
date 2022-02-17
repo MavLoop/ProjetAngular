@@ -36,6 +36,6 @@ export class ReviewsService {
 
   _moderationReviews$(idReviews:Number, idModerator:Number): Observable<Reviews> {
     var uri = idReviews+ "/moderator/"+ idModerator;
-    return this.http.get<Reviews>(uri);
+    return this.http.patch<Reviews>(uri, "body");
   }
 }

@@ -50,10 +50,6 @@ export class GameService {
     return this.http.get<Game[]>('/game/all');
   }
 
-  getGameById(id: number): Observable<Game> {
-    return this.http.get<Game>('/game/'+id);
-  }
-
   uploadGameImage(id: number, formData: FormData): Observable<any> {
     return this.http.post('/game/image/'+id, formData);
   }

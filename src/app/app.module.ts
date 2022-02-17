@@ -24,13 +24,13 @@ import { ManageGameListComponent } from './dashboard/dashboard-moderator/manage-
 import { MatListModule } from '@angular/material/list';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
-import { AddReviewsComponent } from './reviews/add-reviews/add-reviews.component';
-import { ReviewsListComponent } from './reviews/reviews-list/reviews-list.component';
 import { MatDialogModule } from '@angular/material/dialog'
-import { UploadGameImageComponent } from './dashboard/dashboard-moderator/manage-game-list/upload-game-image/upload-game-image.component';
-import { NotConnectingErrorComponent } from './error/not-connecting-error/not-connecting-error.component';
 import { RouterModule } from '@angular/router';
 import { routes }   from './app-routing.module';
+import { AddReviewsComponent } from './reviews/add-reviews/add-reviews.component';
+import { NotConnectingErrorComponent } from './error/not-connecting-error/not-connecting-error.component';
+import { ReviewsListComponent } from './reviews/reviews-list/reviews-list.component';
+import { UploadGameImageComponent } from './dashboard/dashboard-moderator/manage-game-list/upload-game-image/upload-game-image.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +49,7 @@ import { routes }   from './app-routing.module';
     AddGameComponent,
     ManageGameListComponent,
     AddReviewsComponent,
-    UploadGameImageComponent
+    UploadGameImageComponent,
     ReviewsListComponent,
     NotConnectingErrorComponent
   ],
@@ -65,7 +65,7 @@ import { routes }   from './app-routing.module';
     MatListModule,
     MatPaginatorModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
     RouterModule.forRoot(routes ,{ useHash: true }),
   ],
   providers: [],
