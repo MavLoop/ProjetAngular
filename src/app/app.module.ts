@@ -31,6 +31,7 @@ import { AddReviewsComponent } from './reviews/add-reviews/add-reviews.component
 import { NotConnectingErrorComponent } from './error/not-connecting-error/not-connecting-error.component';
 import { ReviewsListComponent } from './reviews/reviews-list/reviews-list.component';
 import { UploadGameImageComponent } from './dashboard/dashboard-moderator/manage-game-list/upload-game-image/upload-game-image.component';
+import { SuccessComponent } from './success/success.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { UploadGameImageComponent } from './dashboard/dashboard-moderator/manage
     AddReviewsComponent,
     UploadGameImageComponent,
     ReviewsListComponent,
-    NotConnectingErrorComponent
+    NotConnectingErrorComponent,
+    SuccessComponent
   ],
   imports: [
     BrowserModule,

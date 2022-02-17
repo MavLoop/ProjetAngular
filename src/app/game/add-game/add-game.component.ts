@@ -22,6 +22,9 @@ export class AddGameComponent implements OnInit {
   businessModels!: BusinessModel[];
   isAddMode!: boolean;
   idGame!: number;
+  success: string = 'null';
+  error: string = 'null';
+
 
 
   addGameForm: FormGroup = this.fb.group({
@@ -143,7 +146,7 @@ export class AddGameComponent implements OnInit {
         console.log(`réponse => ${data}`);
         console.log("type réponse => " + typeof data);
         //this.router.navigate(['../'], { relativeTo: this.route });
-        this.router.navigate(['../'], { relativeTo: this.route });
+        this.success = `Le jeu ${gameDto.name} a bien été ajouté à la liste des jeux`;
       },
       error: (error: any) => console.error(error)
     });
@@ -155,9 +158,13 @@ export class AddGameComponent implements OnInit {
     this.gameService.updateGame(gameDto, this.idGame).subscribe({next: (data: any) => {
       console.log(`réponse => ${data}`);
       console.log("type réponse => " + typeof data);
-      this.router.navigate(['../..'], { relativeTo: this.route });
+      this.success = `Le jeu ${gameDto.name} a bien été modifié`;
+      //this.router.navigate(['../..'], { relativeTo: this.route });
     },
-    error: (error: any) => console.error(error)
+    error: (error: any) => {
+      console.error(error);
+      this.error = error
+    } 
   });
 
   }
@@ -195,5 +202,11 @@ export class AddGameComponent implements OnInit {
       return invalid ? { invalidReleaseDate: { value: date } } : null;
 
     };
+  }
+  handleSuccess() {
+    this.success = 'null';
+  }
+  handleError() {
+    this.error = 'null';
   }
 }

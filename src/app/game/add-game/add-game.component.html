@@ -82,4 +82,12 @@
             <input class="btn mt-3" [ngClass]="{'btn-primary': isAddMode, 'btn-secondary': !isAddMode}" type="submit" 
             [value]="isAddMode ? 'Ajouter': 'Modifier'" [disabled]="addGameForm.invalid">
     </form>
+     <app-success [message]="success"
+     *ngIf="success!=='null'"
+     (close)="handleSuccess()"></app-success> 
+    <!-- <app-error>
+      [messageError]="error"
+      *ngIf="error!=='null'"
+      (close)="handleError()">
+     </app-error> -->
 </div>
