@@ -15,3 +15,8 @@ table {
 .btn {
     margin: 3px;
 }
+
+.add-container {
+    display: flex;
+    justify-content: center;
+}

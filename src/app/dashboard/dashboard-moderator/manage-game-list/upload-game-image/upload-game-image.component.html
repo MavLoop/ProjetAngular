@@ -1,0 +1,4 @@
+<div>
+    <input type="file" accept="image/png, image/gif, image/jpeg" (change)="onFileSelected($event)"/>
+    <button class="btn btn-primary" (click)="patchGame()" [disabled]="!formData" >Envoyer !</button>
+</div>

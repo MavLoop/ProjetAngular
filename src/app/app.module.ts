@@ -24,6 +24,7 @@ import { ManageGameListComponent } from './dashboard/dashboard-moderator/manage-
 import { MatListModule } from '@angular/material/list';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import { UploadGameImageComponent } from './dashboard/dashboard-moderator/manage-game-list/upload-game-image/upload-game-image.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { MatTableModule } from '@angular/material/table';
     SignUpComponent,
     GameDescriptionPipe,
     AddGameComponent,
-    ManageGameListComponent
+    ManageGameListComponent,
+    UploadGameImageComponent
   ],
   imports: [
     BrowserModule,

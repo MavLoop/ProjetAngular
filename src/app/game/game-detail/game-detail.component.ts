@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Game } from 'src/app/common/model/game.model';
+import { GameService } from 'src/app/common/services/game.service';
 
 @Component({
   selector: 'app-game-detail',
@@ -14,7 +15,7 @@ export class GameDetailComponent implements OnInit {
   id!: string | null;
   game!: Game;
 
-  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) {
+  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private gameService: GameService) {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.id = params.get('id');
       if(this.id !== null) {
@@ -30,7 +31,6 @@ export class GameDetailComponent implements OnInit {
   }
 
   initGame(id: number): void {
-    let URI = '/game/'+id;
-    this.http.request<Game>('GET', URI).subscribe((data) => {this.game = data});
+    this.gameService.getGameById(id).subscribe((data) => {this.game = data});
   }
 }
