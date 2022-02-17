@@ -30,7 +30,6 @@ export class UserService {
     addGamer$(gamer: GamerDto): Observable<Gamer> {
       var uri = "user/gamer/save";
       return this.http.post<Gamer>(uri, gamer);
-      //,httpOptions)
     }
 
     _patchGamerById$(id: string, password: PasswordDto): Observable<any> {
@@ -46,7 +45,6 @@ export class UserService {
     addModerator$(moderator: ModeratorDto): Observable<Moderator> {
       var uri = "user/moderator/save";
       return this.http.post<Moderator>(uri, moderator);
-      //,httpOptions)
     }
 
     _patchModeratorById$(id: string, password: PasswordDto): Observable<any> {

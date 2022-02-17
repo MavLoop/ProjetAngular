@@ -1,0 +1,60 @@
+<p>reviews-list works!</p>
+<p> Length : {{ reviewss.length }} </p>
+<div>
+    <table mat-table [dataSource]="filteredReviewss">
+
+        <ng-container matColumnDef="SendingDate">
+            <th mat-header-cell *matHeaderCellDef>Date d'envoi</th>
+            <td mat-cell *matCellDef="let element">{{element.sendingDate}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="Nom du jeu">
+            <th mat-header-cell *matHeaderCellDef>Nom du jeu</th>
+            <td mat-cell *matCellDef="let element">{{element.game.name}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="Pseudo du Joueur">
+            <th mat-header-cell *matHeaderCellDef>Pseudo du Joueur</th>
+            <td mat-cell *matCellDef="let element">{{element.gamer.pseudo}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Note">
+            <th mat-header-cell *matHeaderCellDef>Note</th>
+            <td mat-cell *matCellDef="let element">{{element.rating}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Statut">
+            <th mat-header-cell *matHeaderCellDef>Statut</th>
+            <td mat-cell *matCellDef="let element">
+                <a class="nav-link bg-white text-primary text-center" *ngIf=" element.moderator === null ">
+                    <fa-icon [icon]="['fas', 'question-circle']" size="1x" style="color: red;"></fa-icon>
+                </a>
+                <a class="nav-link bg-white text-primary text-center" *ngIf=" element.moderator !== null ">
+                    <fa-icon [icon]="['fas', 'check-circle']" size="1x" style="color: green;"></fa-icon>
+                </a>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Information">
+            <th mat-header-cell *matHeaderCellDef>Information</th>
+            <td mat-cell *matCellDef="let element">
+                <label *ngIf=" element.moderator === null" >En Attente</label>
+                <label *ngIf=" element.moderator !== null" >Modéré Par {{ element.moderator.pseudo }}</label>
+                <small *ngIf=" element.moderator !== null" >{{ element.moderatorDate }}</small>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Operations">
+            <th mat-header-cell *matHeaderCellDef>Opérations</th>
+            <td mat-cell *matCellDef="let element" class="bt-cell">
+                <button class="btn btn-info" [routerLink]="'/reviews/'+element.id">Voir</button>
+                <button class="btn btn-danger" (click)="okByModerator(element.id)">Modérer</button>
+            </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [length]="reviewss.length" pageSize="5" (page)="getPaginatorData($event)" aria-label="Select page">
+    </mat-paginator>
+</div>

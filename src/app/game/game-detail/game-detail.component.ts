@@ -33,4 +33,5 @@ export class GameDetailComponent implements OnInit {
   initGame(id: number): void {
     this.gameService.getGameById(id).subscribe((data) => {this.game = data});
   }
+
 }

@@ -1,0 +1,66 @@
+<p>add-reviews works!</p>
+
+<div class="container">
+    <div *ngIf="!submitted">
+        <form [formGroup]="addReviewsDtoForm" class="border border-primary border-2 rounded p-3"
+            (ngSubmit)="addReviews()">
+            <div class="form-group">
+                <label class="form-label" for="rating">Note : </label>
+                <input type="text" id="rating" name="rating" class="form-control" formControlName="rating"
+                    class="form-control" />
+
+                <div *ngIf="!rating.valid && (rating.dirty || rating.touched)">
+                    <div class="error" [hidden]="!rating.errors?.['required']">
+                        La note est requise.
+                    </div>
+                    <div class="error" [hidden]="!rating.errors?.['pattern']">
+                        La note est numérique.
+                    </div>
+                    <div class="error" [hidden]="!rating.errors?.['min']">
+                        La note est ne peut pas être inférieur à 0.
+                    </div>
+                    <div class="error" [hidden]="!rating.errors?.['max']">
+                        La note ne peut pas être supérieur à 20/20.
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="description">Description : </label>
+                <textarea formControlName="description" class="form-control" id="description" name="description"
+                    class="form-control"></textarea>
+                <div *ngIf="!description.valid && (description.dirty || description.touched)">
+                    <div class="error" [hidden]="!description.errors?.['required']">
+                        La description est requise
+                    </div>
+                    <div class="error" [hidden]="!description.errors?.['maxlength']">
+                        La description ne peut pas excéder 500 caractères.
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-3">
+                    <input class="btn btn-primary mt-3" type="button" value="retour" [routerLink]="['/games']">
+                </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                    <input class="btn btn-primary mt-3" type="submit" value="Poster le commentaire" [disabled]="addReviewsDtoForm.invalid">
+                    <div class="col-md-3"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row" *ngIf="submitted">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="text-center row">
+                <h4>Votre avis a bien été posté !</h4>
+            </div>
+            <div class="row">
+                <input class="btn btn-primary mt-3" type="button" value="Liste des jeux videos" [routerLink]="['/game'+id]">
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+
+</div>
