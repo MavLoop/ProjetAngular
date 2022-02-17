@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { Observable, ReplaySubject } from 'rxjs';
-import { GameListService } from 'src/app/game/game-list/game-list.service';
-import {DataSource} from '@angular/cdk/collections';
 import { Game } from 'src/app/common/model/game.model';
+import { GameService } from 'src/app/common/services/game.service';
 
 @Component({
   selector: 'app-manage-game-list',
@@ -14,15 +12,16 @@ export class ManageGameListComponent implements OnInit {
 
   length!: number;
   pageSize: number = 5;
-
-  // MatPaginator Output
-  //pageEvent!: PageEvent;
+  pageEvent!: PageEvent;
 
   games!: Game[];
   filteredGames!: Game[];
   displayedColumns: string[] = ['image', 'name', 'editor', 'operations'];
 
-  constructor(private gameListService: GameListService) {
+  constructor(private gameService: GameService) {
+    if(this.pageEvent !== undefined) {
+      this.pageEvent.pageIndex = 1;
+    }
     this.initGames();
   }
 
@@ -31,16 +30,17 @@ export class ManageGameListComponent implements OnInit {
   }
 
   getPaginatorData(event: PageEvent): void {
+    this.pageEvent = event;
     const low: number = event.pageIndex * event.pageSize;
-    console.log('Low : '+low, 'High : '+(low + event.pageSize));
+    console.log('Low : ' + low, 'High : ' + (low + event.pageSize));
     this.filteredGames = this.games.slice(low, low + event.pageSize);
   }
 
   deleteGame(id: number) {
-
+    this.gameService.deleteGameById(id).subscribe(() => this.initGames());
   }
 
   initGames() {
-    this.gameListService.fetchGames().subscribe((data) => {this.games = data; this.filteredGames = this.games; this.filteredGames = this.games.slice(0, this.pageSize); this.length = this.games.length});
+    this.gameService.getAllGames().subscribe((data) => {this.games = data; this.filteredGames = this.games; this.filteredGames = this.games.slice(0, this.pageSize); this.length = this.games.length});
   }
 }

@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BusinessModel } from 'src/app/common/model/business-model.model';
 import { Classification } from 'src/app/common/model/classification.model';
 import { Editor } from 'src/app/common/model/editor.model';
@@ -19,6 +20,8 @@ export class AddGameComponent implements OnInit {
   classifications!: Classification[];
   platforms!: Platform[];
   businessModels!: BusinessModel[];
+  isAddMode!: boolean;
+  idGame!: number;
 
 
   addGameForm: FormGroup = this.fb.group({
@@ -32,15 +35,33 @@ export class AddGameComponent implements OnInit {
     businessModelName: ['', Validators.required]
 
   });
-  constructor(private fb: FormBuilder, private gameService: GameService) { }
+  constructor(private fb: FormBuilder, private gameService: GameService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    /*this.genres = [{ id: 1, name: "genre 1" }, { id: 2, name: "genre 2" }];
-    this.editors = [{ id: 1, name: "editor 1" }, { id: 2, name: "editor 2" }];
-    this.classifications = [{ id: 1, name: "cassification 1" }, { id: 2, name: "classification 2" }];
-    this.platforms = [{ id: 1, name: "platform 1" }, { id: 2, name: "platform 2" }];
-    this.businessModels = [{ id: 1, name: "businessModel 1" }, { id: 2, name: "businessModel 2" }];*/
+    this.route.params.subscribe(params => {
+      this.idGame = +params['id'];
+    });
+   // this.idGame = this.route.snapshot.params['id'];
+    this.isAddMode = !this.idGame;
+    let gameDto!: GameDto;
+    if (!this.isAddMode) {
+      this.gameService.getGameById(this.idGame)
+        .subscribe(game => {
+          gameDto = {
+            name: game.name,
+            description: game.description,
+            releaseDate: game.releaseDate,
+            classificationName: game.classification.name,
+            genreName: game.genre.name,
+            editorName: game.editor.name,
+            platformNames: game.platforms.map(platform =>platform.name),
+            businessModelName: game.businessModel.name
+          }
+          this.addGameForm.patchValue(gameDto);
+          console.log(this.addGameForm.value)
 
+        });
+    }
     // Gettings all the genres from database
     this.gameService.getAllGenres().subscribe({
       next: (data) => this.genres = data,
@@ -95,9 +116,16 @@ export class AddGameComponent implements OnInit {
   get businessModelName(): FormControl {
     return this.addGameForm.get('businessModelName') as FormControl;
   }
+  onSubmit() {
+    if (this.isAddMode) {
+      this.addGame();
+    } else {
+      this.updateGame();
+    }
+  }
 
-  addGame() {
-    const gameDto: GameDto = {
+  constructGameDto(): GameDto {
+    return {
       name: this.addGameForm.value.name,
       description: this.addGameForm.value.description,
       releaseDate: this.addGameForm.value.releaseDate,
@@ -107,8 +135,31 @@ export class AddGameComponent implements OnInit {
       platformNames: this.addGameForm.value.platformNames,
       businessModelName: this.addGameForm.value.businessModelName
     }
-    
-    this.gameService.addGame(gameDto);
+  }
+  addGame() {
+    const gameDto = this.constructGameDto();
+    this.gameService.addGame(gameDto).subscribe({
+      next: (data: any) => {
+        console.log(`réponse => ${data}`);
+        console.log("type réponse => " + typeof data);
+        //this.router.navigate(['../'], { relativeTo: this.route });
+        this.router.navigate(['../'], { relativeTo: this.route });
+      },
+      error: (error: any) => console.error(error)
+    });
+
+  }
+
+  updateGame() {
+    const gameDto = this.constructGameDto();
+    this.gameService.updateGame(gameDto, this.idGame).subscribe({next: (data: any) => {
+      console.log(`réponse => ${data}`);
+      console.log("type réponse => " + typeof data);
+      this.router.navigate(['../..'], { relativeTo: this.route });
+    },
+    error: (error: any) => console.error(error)
+  });
+
   }
   /**
    * 
@@ -131,7 +182,6 @@ export class AddGameComponent implements OnInit {
    */
 
   private releaseDateValidator(): ValidatorFn {
-    // return (control: AbstractControl): { [key: string]: any } | null => {
     return (control: AbstractControl): ValidationErrors | null => {
       let invalid = false;
       const date = control.value;

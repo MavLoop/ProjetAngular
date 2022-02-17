@@ -2,6 +2,11 @@ table {
     width: 100%;
 }
 
+.table-container {
+    width: 100%;
+    padding: 5px;
+}
+
 .table-img {
     width: 100px;
     height: 150px;
@@ -14,4 +19,9 @@ table {
 
 .btn {
     margin: 3px;
+}
+
+.add-container {
+    display: flex;
+    justify-content: center;
 }

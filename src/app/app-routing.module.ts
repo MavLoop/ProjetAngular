@@ -21,11 +21,14 @@ export const routes: Routes = [
   { path:"dashboard-gamer", component: DashboardGamerComponent},
   { path:"dashboard-moderator", component: DashboardModeratorComponent},
   { path:"games", component: GameListComponent},
-  { path:"game/:id", component: GameDetailComponent },
-  { path:"games/save", component: AddGameComponent },
+  { path:"games/details/:id", component: GameDetailComponent },
+  { path:"moderator/games/save", component: AddGameComponent },
   { path:"moderator/games", component: ManageGameListComponent },
   { path:"game/:id/reviews", component: AddReviewsComponent},
   { path:"reviews/moderator/all",component:ReviewsListComponent},
+  { path:"moderator/games/update/:id", component: AddGameComponent },
+  { path:"moderator/games", component: ManageGameListComponent },
+  { path:"games/upload/:id", component: UploadGameImageComponent }
   { path: "error", component:ErrorComponent},
   { path: 'error-not-connecting', component: NotConnectingErrorComponent},
   { path:'**', redirectTo:'', pathMatch: 'full'}

@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { BusinessModel } from '../model/business-model.model';
 import { Classification } from '../model/classification.model';
 import { Editor } from '../model/editor.model';
@@ -14,7 +13,6 @@ import { Platform } from '../model/platform.model';
   providedIn: 'root'
 })
 export class GameService {
-  ROOT_URL = environment.PROJETFINAL_JEUXVIDEOS;
   constructor(private http: HttpClient) { }
 
   getAllGenres(): Observable<Genre[]> {
@@ -36,14 +34,32 @@ export class GameService {
     return this.http.get<BusinessModel[]>(`/businessModel/all`);
   }
 
-  addGame(gameDto: GameDto) {
-    return this.http.post<GameDto>(`/game/save`, gameDto).subscribe({
-      next: (data: any) => {
-        console.log(`réponse => ${data}`);
-        console.log("type réponse => " + typeof data);
-      },
-      error: (error => console.error(error))
-    });
+  getGameById(id: number): Observable<Game> {
+    return this.http.get<Game>(`/game/${id}`);
+  }
+
+  addGame(gameDto: GameDto): Observable<Game> {
+    return this.http.post<Game>(`/game/save`, gameDto);
+  }
+
+  updateGame(gameDto: GameDto, id: number): Observable<Game> {
+    return this.http.put<Game>(`/game/update/${id}`, gameDto);
+  }
+
+  getAllGames(): Observable<Game[]> {
+    return this.http.get<Game[]>('/game/all');
+  }
+
+  getGameById(id: number): Observable<Game> {
+    return this.http.get<Game>('/game/'+id);
+  }
+
+  uploadGameImage(id: number, formData: FormData): Observable<any> {
+    return this.http.post('/game/image/'+id, formData);
+  }
+
+  deleteGameById(id: number) {
+    return this.http.delete('/game/'+id+'/delete');
   }
 
   _searchGameById$(id: string): Observable<Game> {

@@ -6,7 +6,7 @@
     </div>
     <div>
         <img *ngIf="game.image === null" src="/assets/images/games/default.jpg"/>
-        <img *ngIf="game.image !== null" src='/assets/images/games/{{game.id}}.jpg' />   
+        <img *ngIf="game.image !== null" src="images/{{game.image}}" />  
     </div>
     <div>
         {{ game.description }}
@@ -17,4 +17,3 @@
     <div>
         <button mat-button [routerLink]="'/game/'+game.id+'/reviews'">Poster un commentaire</button>
     </div>
-</div> -->

@@ -17,7 +17,7 @@ export class GameListComponent implements OnInit {
 
   constructor(private titleService: Title, private gameListService: GameListService, private tokenStorageService: TokenStorageService) {
     this.titleService.setTitle("Game Busters");
-    this.gameListService.fetchGames().subscribe((data) => {this.games = data; this.filteredGames = this.games});
+    this.gameService.getAllGames().subscribe((data) => {this.games = data; this.filteredGames = this.games});
   }
   
   ngOnInit(): void {

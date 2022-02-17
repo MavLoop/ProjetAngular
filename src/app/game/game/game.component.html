@@ -1,28 +1,13 @@
-<!-- <div class="card">
-    <!-- <img src=" {{game.image}} " alt="Game image" class="card-img" />
-    <div class="centered">
-        <div>
-            <p> {{game.name}} </p>
-        </div>
-        <div>
-            {{game.description}}
-        </div>
-        <div class="genre">
-            {{game.genre.name}}
-        </div>
-        <button [routerLink]="'/game/' + game.id ">Détails</button>
-    </div>
-</div> -->
 <mat-card>
     <mat-card-header>
-        <mat-card-title> {{game.name}} </mat-card-title>
+        <mat-card-title> {{ game.name }} </mat-card-title>
     </mat-card-header>
     <img mat-card-image *ngIf="game.image === null" src="/assets/images/games/default.jpg"/>
-    <img mat-card-image *ngIf="game.image !== null" src='/assets/images/games/{{game.id}}.jpg' />
+    <img mat-card-image *ngIf="game.image !== null" src="images/{{game.image}}" />  
     <mat-card-content>
-        {{game.description}}
+        {{ game.description | gameDescription:40 }}
     </mat-card-content>
     <mat-card-actions>
-        <button mat-button [routerLink]="'/game/'+game.id">DETAILS</button>
+        <button class="btn btn-primary" [routerLink]="'/games/details/'+game.id">DETAILS</button>
     </mat-card-actions>
 </mat-card>
