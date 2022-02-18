@@ -1,6 +1,7 @@
-game-detail {
+.game-detail {
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
+    justify-content: space-around;
 }
 
 .title {
@@ -11,13 +12,31 @@ game-detail {
 .image {
     height: 420px;
     width: 300px;
+    margin : 10px;
+}
+
+.sub-content {
+    margin-top: 5px;
+}
+
+.game-desc {
+    width: 300px;
 }
 
 .my-content {
-    margin: 0px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    margin: 10px;
     width: fit-content;
 }
 
 .pegi-icon {
+    height: 75px;
     width: 60px;
+}
+
+.sad {
+    margin-top: 20px;
+    font-weight: 500;
 }
