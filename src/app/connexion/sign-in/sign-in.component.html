@@ -1,4 +1,4 @@
-<form *ngIf="!isLoggedIn" [formGroup]="profileForm" (ngSubmit)="formSending()">
+<form *ngIf="!isLoggedIn"  [formGroup]="profileForm" (ngSubmit)="formSending()">
     <div class="form-group">
         <label class="form-label">Pseudo</label>
         <input id="pseudo" type="text" name="pseudo" class="form-control" formControlName="pseudo" />
@@ -40,7 +40,7 @@
         <div class="col-md-3"></div>
         <div class="col-md-6">
             <div class="alert alert-info text-center">
-                Bienvenue {{gamer?.pseudo}} !
+                Bienvenue {{user?.pseudo}}!
             </div>
         </div>
         <div class="col-md-3"></div>

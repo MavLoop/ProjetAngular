@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Gamer } from 'src/app/common/model/gamer';
 import { LoginDTO } from 'src/app/common/model/login-dto';
+import { Moderator } from 'src/app/common/model/moderator';
 import { AuthenticationService } from 'src/app/common/services/authentication.service';
 import { TokenStorageService } from 'src/app/common/services/token-storage.service';
 
@@ -17,7 +18,17 @@ export class SignInComponent implements OnInit {
   constructor(private authenticationService: AuthenticationService,
     private fb: FormBuilder,
     private router: Router,
-    private tokenStorageService: TokenStorageService) { }
+    private tokenStorageService: TokenStorageService) {
+    
+    // this.tokenStorageService.estConnecte.subscribe(isConnect => {
+    //   this.isLoggedIn = isConnect;
+    //   this.user = this.tokenStorageService.getUser();
+    //   if (!isConnect) {
+    //     this.isLoggedIn = false;
+    //     this.refreshform();
+    //   }
+    // });
+  }
 
   login: LoginDTO = new LoginDTO();
   profileForm = this.fb.group({
@@ -25,20 +36,22 @@ export class SignInComponent implements OnInit {
     password: ['', [Validators.required]]
   });
 
-  gamer?: Gamer;
-  isLoggedIn = false;
+  user!: Gamer | Moderator;
+
+  @Input()
+  isLoggedIn!: boolean;
+
   isLoginFailed = false;
   errorMessage = '';
 
   ngOnInit(): void {
-    this.tokenStorageService.estConnecte.subscribe(isConnect => {
-      // this.isLoggedIn = !!this.tokenStorage.getToken();
-      this.isLoggedIn = isConnect;
-      this.gamer = this.tokenStorageService.getUser();
-      if (!isConnect) {
-        this.refreshform();
-      }
-    });
+    this.user = this.tokenStorageService.getUser();
+    if (this.user != null) {
+      this.isLoggedIn = true;
+    } else {
+      this.isLoggedIn = false;
+      this.refreshform();
+    }
   }
 
   get pseudoForm(): FormControl {
@@ -52,12 +65,12 @@ export class SignInComponent implements OnInit {
     this.errorMessage = "êtes-vous inscrit ?";
     this.isLoginFailed = true;
   };
-  
+
   private loadGamer = (data: Gamer): void => {
-    this.gamer = data;
+    this.user = data;
     // this.tokenStorageService.saveToken(data.token);
     this.tokenStorageService.saveUser(data);
-    console.log(this.gamer);
+    console.log(this.user);
     this.isLoginFailed = false;
     this.isLoggedIn = true;
   }
@@ -77,10 +90,10 @@ export class SignInComponent implements OnInit {
   }
 
   refreshform() {
-    const pseudo = '';
-    const password = '';
-    this.profileForm.get('pseudo')?.setValue(pseudo);
-    this.profileForm.get('password')?.setValue(password);
+      const pseudo = '';
+      const password = '';
+      this.profileForm.get('pseudo')?.setValue(pseudo);
+      this.profileForm.get('password')?.setValue(password);
   }
 
 }

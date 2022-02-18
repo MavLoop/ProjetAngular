@@ -1,5 +1,3 @@
-<p>add-reviews works!</p>
-
 <div class="container">
     <div *ngIf="!submitted">
         <form [formGroup]="addReviewsDtoForm" class="border border-primary border-2 rounded p-3"
@@ -59,7 +57,7 @@
             </div>
             <div class="row">
                 <input class="btn btn-primary mt-3" type="button" value="Liste des jeux videos"
-                    [routerLink]="['/games/details/'+id]">
+                    [routerLink]="['/game'+id]">
             </div>
         </div>
         <div class="col-md-2"></div>

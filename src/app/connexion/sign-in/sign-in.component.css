@@ -12,10 +12,14 @@
     margin: 10px auto;
 }
 
-.error {
-    color: red;
+.error{
+    color: #a94442; /* red */
 }
 
+input.ng-valid.ng-touched {
+    border-left: 12px solid  #42A948; /* green */
+  }
+
 input.ng-invalid.ng-touched {
-    background-color: red;
+    border-left: 12px solid  #a94442;
 }

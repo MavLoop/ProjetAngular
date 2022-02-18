@@ -38,9 +38,8 @@
             <th mat-header-cell *matHeaderCellDef>Information</th>
             <td mat-cell *matCellDef="let element">
                 <label *ngIf=" element.moderator === null">En Attente</label>
-                <small *ngIf=" element.moderator !== null">{{ element.moderator.pseudo }}</small><br />
-                <small *ngIf=" element.moderator !== null">{{ element.moderatorDate | date : 'medium' : '' : 'fr-FR'
-                    }}</small>
+                <small *ngIf=" element.moderator !== null">Validé par {{ element.moderator.pseudo }}</small><br />
+                <small *ngIf=" element.moderator !== null">Le {{ element.moderatorDate | date : 'medium' : '' : 'fr-FR' }}</small>
             </td>
         </ng-container>
 
@@ -53,8 +52,7 @@
                 <span>
                     <button *ngIf="element.moderator === null" class="btn btn-success"
                         (click)="okByModerator(element.id)">Valider</button>
-                    <button *ngIf="element.moderator !== null" class="btn btn-secondary"
-                        (click)="okByModerator(element.id)">Valider</button>
+                    <button *ngIf="element.moderator !== null" [disabled]="element.moderator !== null" class="btn btn-secondary">Validé&nbsp;</button>
                 </span>
                 <span>
                     <button class="btn btn-danger" (click)="deleteReviews(element.id)">Supprimer</button>

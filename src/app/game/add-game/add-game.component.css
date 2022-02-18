@@ -3,10 +3,30 @@ form {
     margin: 50px auto;
 }
 
-.error {
-    color: red;
+.error{
+    color: #a94442; /* red */
 }
 
-input.ng-invalid.ng-touched, select.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched{
-    background-color: red;
+input.ng-valid.ng-touched {
+    border-left: 12px solid  #42A948; /* green */
+  }
+
+input.ng-invalid.ng-touched {
+    border-left: 12px solid  #a94442;
+}
+
+select.ng-valid.ng-touched {
+    border-left: 12px solid  #42A948; /* green */
+  }
+
+select.ng-invalid.ng-touched {
+    border-left: 12px solid  #a94442;
+}
+
+textarea.ng-valid.ng-touched {
+    border-left: 12px solid  #42A948; /* green */
+  }
+
+textarea.ng-invalid.ng-touched {
+    border-left: 12px solid  #a94442;
 }

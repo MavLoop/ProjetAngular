@@ -36,8 +36,10 @@ export class ManageGameListComponent implements OnInit {
     this.pageEvent = event;
     const low: number = event.pageIndex * event.pageSize;
     this.filteredGames = this.games.slice(low, low + event.pageSize);
-    if(this.sort.active) {
-      this.sortData(this.sort);
+    if(this.sort !== undefined) {
+      if(this.sort.active) {
+        this.sortData(this.sort);
+      }
     }
   }
 

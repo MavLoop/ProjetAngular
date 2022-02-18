@@ -19,7 +19,7 @@ export class SignUpComponent implements OnInit {
     pseudo: ['', [Validators.required, Validators.pattern('^([A-Za-z0-9]+)*')]],
     birthdate: [new Date().toISOString().slice(0, 10), [Validators.required, this.releaseDateValidator()]],
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.min(6)]]
+    password: ['', [Validators.required, Validators.minLength(6)]]
 
   });
 

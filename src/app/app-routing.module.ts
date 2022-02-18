@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardModeratorComponent } from './dashboard/dashboard-moderator/dashboard-moderator.component';
 import { GameDetailComponent } from './game/game-detail/game-detail.component';
 import { GameListComponent } from './game/game-list/game-list.component';
 import { HomeComponent } from './home/home.component';
@@ -15,26 +14,33 @@ import { ReviewsListComponent } from './reviews/reviews-list/reviews-list.compon
 import { NotConnectingErrorComponent } from './error/not-connecting-error/not-connecting-error.component';
 import { ReviewsDetailComponent } from './reviews/reviews-detail/reviews-detail.component';
 import { ReviewsGamerListComponent } from './reviews/reviews-gamer-list/reviews-gamer-list.component';
+import { NotAdminErrorComponent } from './error/not-admin-error/not-admin-error.component';
+import { AdminGuard } from './common/guards/admin.guard';
+import { GamerGuard } from './common/guards/gamer.guard';
+import { UserGuardGuard } from './common/guards/user-guard.guard';
+
 
 export const routes: Routes = [
   { path:"", component:HomeComponent},
+  { path:"home", component:HomeComponent},
   { path:"signin", component: SignInComponent },
   { path:"signup", component: SignUpComponent },
-  { path:"dashboard-moderator", component: DashboardModeratorComponent},
-  { path:"games", component: GameListComponent},
-  { path:"games/details/:id", component: GameDetailComponent },
-  { path:"moderator/games/save", component: AddGameComponent },
-  { path:"moderator/games", component: ManageGameListComponent },
-  { path:"game/:id/reviews", component: AddReviewsComponent},
-  { path:"reviews/moderator/all",component:ReviewsListComponent},
-  { path:"reviews/moderator/reviews/:id",component:ReviewsDetailComponent},
-  { path:"reviews/gamer/list",component:ReviewsGamerListComponent},
-  { path:"moderator/games/update/:id", component: AddGameComponent },
-  { path:"moderator/games", component: ManageGameListComponent },
-  { path:"games/upload/:id", component: UploadGameImageComponent },
+  { path:"games", component: GameListComponent , canActivate: [UserGuardGuard]},
+  { path:"games/details/:id", component: GameDetailComponent , canActivate: [UserGuardGuard]},
+  { path:"moderator/games/save", component: AddGameComponent , canActivate: [AdminGuard] },
+  { path:"moderator/games", component: ManageGameListComponent , canActivate: [AdminGuard] },
+  { path:"game/:id/reviews", component: AddReviewsComponent , canActivate: [GamerGuard] },
+  { path:"reviews/moderator/all",component:ReviewsListComponent , canActivate: [AdminGuard]},
+  { path:"reviews/moderator/reviews/:id",component:ReviewsDetailComponent , canActivate: [AdminGuard]},
+  { path:"reviews/gamer/list",component:ReviewsGamerListComponent , canActivate: [GamerGuard] },
+  { path:"moderator/games/update/:id", component: AddGameComponent , canActivate: [AdminGuard]},
+  { path:"moderator/games", component: ManageGameListComponent , canActivate: [AdminGuard]},
+  { path:"games/upload/:id", component: UploadGameImageComponent , canActivate: [AdminGuard] },
   { path: "error", component:ErrorComponent},
   { path: 'error-not-connecting', component: NotConnectingErrorComponent},
-  { path:'**', redirectTo:'', pathMatch: 'full'}
+  { path: 'error-not-moderator', component: NotAdminErrorComponent},
+  { path: 'error-not-gamer', component: NotAdminErrorComponent},
+  { path:'**', redirectTo:"home", pathMatch: 'full'}
 ];
 
 @NgModule({

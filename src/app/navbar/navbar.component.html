@@ -1,37 +1,39 @@
-<nav class="navbar navbar-expand-md navbar-primary bg-white">
+<nav class="navbar fixed-top sticky-top navbar-light navbar-expand-lg" style="background-color: #e3f2fd;">
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
+            aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button> -->
+    <div class="collapse navbar-collapse navbar-text" id="navbarTogglerDemo01">
+        <a class="navbar-brand" href="#" class="navbar-brand">
+            <img class="logo" src="/assets/logo.png" width="100" height="100%" alt="image" />
+        </a>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
-    <a class="navbar-brand" href="#" class="navbar-brand">
-        <img src="" width="100" height="100%" alt="image" />
-    </a>
+            <li class="nav-item">
+                <a routerLink="" class="nav-link" placement="bottom">Accueil</a>
+            </li>
+            <li class="nav-item" *ngIf='isLoggedIn'>
+                <a routerLink="games" class="nav-link" placement="bottom">Catalogue</a>
+            </li>
+            <li class="nav-item" *ngIf='isLoggedIn && !hasModeratorRole'>
+                <a class="nav-link" routerLink="reviews/gamer/list">Mes avis</a>
+            </li>
 
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <a routerLink="" class="nav-link" placement="bottom">Accueil</a>
-        </li>
-        <!-- <li class="nav-item" *ngIf='isLoggedIn'> -->
-        <li class="nav-item">
-            <a routerLink="games" class="nav-link" placement="bottom">Catalogue</a>
-        </li>
-    </ul>
-    <ul class="navbar-nav ml-auto">
+            <li class="nav-item" *ngIf='isLoggedIn && hasModeratorRole'>
+                <a class="nav-link" [routerLink]="'/moderator/games'">Gestion des jeux</a>
+            </li>
 
-        <!-- <li class="nav-item" *ngIf='isLoggedIn && !hasModeratorRole'> -->
-        <li class="nav-item">
-            <a class="nav-link" routerLink="reviews/gamer/list">Mes avis</a>
-        </li>
-        <!-- <li class="nav-item" *ngIf='isLoggedIn && hasModeratorRole'> -->
-        <li class="nav-item">
-            <a class="nav-link" routerLink="dashboard-moderator">DASHBOARD MODERATEUR</a>
-        </li>
-        <li class="nav-item" *ngIf='!isLoggedIn'>
-            <a class="nav-link bg-white text-primary" routerLink="/">
-                <fa-icon [icon]="['fas', 'user']" size="1x" style="color: red;"></fa-icon>
+            <li class="nav-item" *ngIf='isLoggedIn && hasModeratorRole'>
+                <a class="nav-link" [routerLink]="'/reviews/moderator/all'">Gestion des avis</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <a class="nav-item  text-primary" *ngIf='!isLoggedIn'>
+                <fa-icon [icon]="['fas', 'user']" size="2x" style="color: red;"></fa-icon>
             </a>
-        </li>
-        <li class="nav-item" *ngIf='isLoggedIn'>
-            <a class="nav-link bg-white text-primary text-center" (click)='onLogout()'>
-                <fa-icon [icon]="['fas', 'user']" size="1x" style="color: green;"></fa-icon>
+            <a class="nav-item text-primary text-center" *ngIf='isLoggedIn' (click)='onLogout()'>
+                <fa-icon [icon]="['fas', 'user']" size="2x" style="color: green;"></fa-icon>
             </a>
-        </li>
-    </ul>
+        </form>
+    </div>
 </nav>

@@ -38,7 +38,7 @@
                 <div class="error" [hidden]="!passwordForm.errors?.['required']">
                     Le mot de passe est requis.
                 </div>
-                <div class="error" [hidden]="!passwordForm.errors?.['min']">
+                <div class="error" [hidden]="!passwordForm.errors?.['minlength']">
                     Un minimum de 6 caractères est attendu.
                 </div>
             </div>
@@ -53,7 +53,7 @@
                 <div class="error" [hidden]="!birthdate.errors?.['required']">
                     Le date de naissance est requise.
                 </div>
-                <div class="error" [hidden]="!birthdate.errors?.['releaseDateValidator']">
+                <div class="error" [hidden]="!birthdate.errors?.['invalidReleaseDate']">
                     La date de naissance ne peut pas être dans le passé.
                 </div>
             </div>
