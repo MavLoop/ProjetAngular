@@ -44,7 +44,7 @@ export class AddGameComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.idGame = +params['id'];
     });
-   // this.idGame = this.route.snapshot.params['id'];
+    
     this.isAddMode = !this.idGame;
     let gameDto!: GameDto;
     if (!this.isAddMode) {
@@ -143,12 +143,10 @@ export class AddGameComponent implements OnInit {
     const gameDto = this.constructGameDto();
     this.gameService.addGame(gameDto).subscribe({
       next: (data: any) => {
-        console.log(`réponse => ${data}`);
-        console.log("type réponse => " + typeof data);
-        //this.router.navigate(['../'], { relativeTo: this.route });
+        
         this.success = `Le jeu ${gameDto.name} a bien été ajouté à la liste des jeux`;
       },
-      error: (error: any) => console.error(error)
+      error: (error: any) => console.error(error.error)
     });
 
   }
@@ -159,7 +157,6 @@ export class AddGameComponent implements OnInit {
       console.log(`réponse => ${data}`);
       console.log("type réponse => " + typeof data);
       this.success = `Le jeu ${gameDto.name} a bien été modifié`;
-      //this.router.navigate(['../..'], { relativeTo: this.route });
     },
     error: (error: any) => {
       console.error(error);
@@ -192,15 +189,9 @@ export class AddGameComponent implements OnInit {
     return (control: AbstractControl): ValidationErrors | null => {
       let invalid = false;
       const date = control.value;
-      console.log(`Date de sortie => ${date}`);
       const currentDate = new Date();
-      console.log(`Date du jour => ${currentDate}`);
       invalid = (new Date(date).valueOf()) > (currentDate.valueOf());
-      console.log(`invalid => ${invalid}`);
-      console.log(this.addGameForm);
-
       return invalid ? { invalidReleaseDate: { value: date } } : null;
-
     };
   }
   handleSuccess() {
