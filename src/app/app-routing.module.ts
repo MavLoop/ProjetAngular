@@ -18,6 +18,7 @@ import { ReviewsGamerListComponent } from './reviews/reviews-gamer-list/reviews-
 
 export const routes: Routes = [
   { path:"", component:HomeComponent},
+  { path:"home", component:HomeComponent},
   { path:"signin", component: SignInComponent },
   { path:"signup", component: SignUpComponent },
   { path:"dashboard-moderator", component: DashboardModeratorComponent},
@@ -34,7 +35,7 @@ export const routes: Routes = [
   { path:"games/upload/:id", component: UploadGameImageComponent },
   { path: "error", component:ErrorComponent},
   { path: 'error-not-connecting', component: NotConnectingErrorComponent},
-  { path:'**', redirectTo:'', pathMatch: 'full'}
+  { path:'**', redirectTo:"home", pathMatch: 'full'}
 ];
 
 @NgModule({

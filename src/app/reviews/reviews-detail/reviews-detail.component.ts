@@ -37,9 +37,9 @@ export class ReviewsDetailComponent implements OnInit {
       if (isConnect) {
         if (this.user.admin == true) {
           this.hasAdminRole = true;
-        }
-        if (this.user.admin == false) {
+        } else {
           this.hasAdminRole = false;
+          this.router.navigate(['/error-not-connecting']);
         }
       }
     });

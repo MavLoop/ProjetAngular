@@ -15,20 +15,20 @@
             <li class="nav-item" *ngIf='isLoggedIn'>
                 <a routerLink="games" class="nav-link" placement="bottom">Catalogue</a>
             </li>
-            <li class="nav-item" *ngIf='isLoggedIn && !hasModeratorRole && hasGamerRole'>
+            <li class="nav-item" *ngIf='isLoggedIn && !hasModeratorRole'>
                 <a class="nav-link" routerLink="reviews/gamer/list">Mes avis</a>
             </li>
 
-            <li class="nav-item" *ngIf='isLoggedIn && hasModeratorRole && !hasGamerRole'>
+            <li class="nav-item" *ngIf='isLoggedIn && hasModeratorRole'>
                 <a class="nav-link" [routerLink]="'/moderator/games'">Gestion des jeux</a>
             </li>
 
-            <li class="nav-item" *ngIf='isLoggedIn && hasModeratorRole && !hasGamerRole'>
+            <li class="nav-item" *ngIf='isLoggedIn && hasModeratorRole'>
                 <a class="nav-link" [routerLink]="'/reviews/moderator/all'">Gestion des avis</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-            <a class="nav-item  text-primary" *ngIf='!isLoggedIn' routerLink="/">
+            <a class="nav-item  text-primary" *ngIf='!isLoggedIn'>
                 <fa-icon [icon]="['fas', 'user']" size="2x" style="color: red;"></fa-icon>
             </a>
             <a class="nav-item text-primary text-center" *ngIf='isLoggedIn' (click)='onLogout()'>
