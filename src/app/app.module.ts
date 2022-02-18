@@ -31,7 +31,6 @@ import { NotConnectingErrorComponent } from './error/not-connecting-error/not-co
 import { ReviewsListComponent } from './reviews/reviews-list/reviews-list.component';
 import { UploadGameImageComponent } from './dashboard/dashboard-moderator/manage-game-list/upload-game-image/upload-game-image.component';
 import { ReviewsDetailComponent } from './reviews/reviews-detail/reviews-detail.component';
-import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { SuccessComponent } from './success/success.component';
 import { MatSortModule } from '@angular/material/sort';
