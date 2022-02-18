@@ -31,7 +31,6 @@ import { NotConnectingErrorComponent } from './error/not-connecting-error/not-co
 import { ReviewsListComponent } from './reviews/reviews-list/reviews-list.component';
 import { UploadGameImageComponent } from './dashboard/dashboard-moderator/manage-game-list/upload-game-image/upload-game-image.component';
 import { ReviewsDetailComponent } from './reviews/reviews-detail/reviews-detail.component';
-import { registerLocaleData } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { SuccessComponent } from './success/success.component';
@@ -81,7 +80,6 @@ registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
     MatDialogModule,
     MatSortModule,
     MatFormFieldModule,
-    MatButtonModule,
     RouterModule.forRoot(routes ,{ useHash: true }),
   ],
   providers: [],
