@@ -15,8 +15,7 @@ export class GameListComponent implements OnInit {
   filteredGames!: Game[];
   public filter!: string;
 
-  constructor(private titleService: Title, private gameService: GameService, private tokenStorageService: TokenStorageService) {
-    this.titleService.setTitle("Game Busters");
+  constructor(private gameService: GameService, private tokenStorageService: TokenStorageService) {
     this.gameService.getAllGames().subscribe((data) => {this.games = data; this.filteredGames = this.games});
   }
   

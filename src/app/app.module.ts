@@ -37,6 +37,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { GameReviewComponent } from './game/game-detail/game-review/game-review.component';
 import localeFr from '@angular/common/locales/fr';
 import localeFrExtra from '@angular/common/locales/extra/fr';
+import { ReviewsGamerListComponent } from './reviews/reviews-gamer-list/reviews-gamer-list.component';
+import { SuccessSignUpComponent } from './success-sign-up/success-sign-up.component';
 import { registerLocaleData } from '@angular/common';
 
 registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
@@ -62,7 +64,9 @@ registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
     NotConnectingErrorComponent,
     SuccessComponent,
     ReviewsDetailComponent,
-    GameReviewComponent
+    GameReviewComponent,
+    ReviewsGamerListComponent,
+    SuccessSignUpComponent
   ],
   imports: [
     BrowserModule,

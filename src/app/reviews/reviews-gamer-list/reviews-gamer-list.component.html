@@ -26,7 +26,7 @@
             <th mat-header-cell *matHeaderCellDef>Statut</th>
             <td mat-cell *matCellDef="let element">
                 <a class="nav-link bg-white text-primary text-center" *ngIf=" element.moderator === null ">
-                    <fa-icon [icon]="['fas', 'question']" size="1x" style="color: red;"></fa-icon>
+                    <fa-icon [icon]="['fas', 'circle']" size="1x" style="color: red;"></fa-icon>
                 </a>
                 <a class="nav-link bg-white text-primary text-center" *ngIf=" element.moderator !== null ">
                     <fa-icon [icon]="['fas', 'check-circle']" size="1x" style="color: green;"></fa-icon>
@@ -39,24 +39,26 @@
             <td mat-cell *matCellDef="let element">
                 <label *ngIf=" element.moderator === null">En Attente</label>
                 <small *ngIf=" element.moderator !== null">{{ element.moderator.pseudo }}</small><br />
-                <small *ngIf=" element.moderator !== null">{{ element.moderatorDate | date : 'medium' : '' : 'fr-FR' }}</small>
+                <small *ngIf=" element.moderator !== null">{{ element.moderatorDate | date : 'medium' : '' : 'fr-FR'
+                    }}</small>
             </td>
         </ng-container>
 
         <ng-container matColumnDef="Operations">
             <th mat-header-cell *matHeaderCellDef>Opérations</th>
             <td mat-cell *matCellDef="let element" class="bt-cell">
-                <span>
+                <!-- <span>
                     <button class="btn btn-info" [routerLink]="'/reviews/moderator/reviews/'+element.id">Voir</button>
                 </span>
                 <span>
                     <button *ngIf="element.moderator === null" class="btn btn-success"
                         (click)="okByModerator(element.id)">Valider</button>
-                    <button *ngIf="element.moderator !== null" [disabled]="element.moderator !== null" class="btn btn-secondary">Validé&nbsp;</button>
+                    <button *ngIf="element.moderator !== null" class="btn btn-secondary"
+                        (click)="okByModerator(element.id)">Valider</button>
                 </span>
                 <span>
                     <button class="btn btn-danger" (click)="deleteReviews(element.id)">Supprimer</button>
-                </span>
+                </span> -->
             </td>
         </ng-container>
 

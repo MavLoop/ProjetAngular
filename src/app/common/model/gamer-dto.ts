@@ -1,6 +1,6 @@
-export class GamerDto {
-    pseudo!: string 
-    password!: string
-    birthdate!: string
-    email!: string
+export interface GamerDto {
+    pseudo: string;
+    password: string;
+    email: string;
+    birthDate: Date;
 }

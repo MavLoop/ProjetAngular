@@ -1,39 +1,64 @@
-<form [formGroup]="profileForm" (ngSubmit)="formSending()">
-    <div>
-        <label>Pseudo : </label>
-        <input id="pseudo" type="text" name="pseudo" formControlName="pseudo" />
-    </div>
-    <div *ngIf="!pseudoForm.value.valid && (pseudoForm.value.dirty ||pseudoForm.value.touched)">
-        <div [hidden]="!pseudoForm.value.errors?.['required']">
-            Pseudo is required
+<h1 class="text-center">Ajout d'un Joueur</h1>
+<div class="container">
+    <form [formGroup]="profileForm" class="border border-primary border-2 rounded p-3" (ngSubmit)="formSending()">
+
+        <div class="form-group">
+            <label class="form-label" for="pseudo">Pseudo : </label>
+            <input type="text" id="pseudo" name="pseudo" class="form-control" formControlName="pseudo"
+                class="form-control" />
+                <div *ngIf="!pseudoForm.valid && (pseudoForm.dirty || pseudoForm.touched)">
+                    <div class="error" [hidden]="!pseudoForm.errors?.['required']">
+                        L'email est requis.
+                    </div>
+                    <div class="error" [hidden]="!pseudoForm.errors?.['pattern']">
+                       Attention les symboles sont interdits !
+                    </div>
+                </div>
         </div>
-    </div>
-    <div>
-        <label>Email : </label>
-        <input id="email" type="text" name="email" formControlName="email" />
-    </div>
-    <div *ngIf="!emailForm.value.valid && (emailForm.value.dirty ||emailForm.value.touched)">
-        <div [hidden]="!emailForm.value.errors?.['required']">
-            Email is required
+
+        <div class="form-group">
+            <label class="form-label" for="email">Email : </label>
+            <input type="text" id="email" name="email" class="form-control" formControlName="email"
+                class="form-control" />
+            <div *ngIf="!emailForm.valid && (emailForm.dirty || emailForm.touched)">
+                <div class="error" [hidden]="!emailForm.errors?.['required']">
+                    L'email est requis.
+                </div>
+                <div class="error" [hidden]="!emailForm.errors?.['email']">
+                   Exemple : abc@abc.abc
+                </div>
+            </div>
         </div>
-    </div>
-    <div>
-        <label>Password : </label>
-        <input id="password" type="password" name="password" formControlName="password" />
-    </div>
-    <div *ngIf="!passwordForm.value.valid && (passwordForm.value.dirty ||passwordForm.value.touched)">
-        <div [hidden]="!passwordForm.value.errors?.['required']">
-            Password is required
+
+        <div class="form-group">
+            <label class="form-label" for="password">Mot de passe : </label>
+            <input type="password" id="password" name="password" class="form-control" formControlName="password"
+                class="form-control" />
+            <div *ngIf="!passwordForm.valid && (passwordForm.dirty || passwordForm.touched)">
+                <div class="error" [hidden]="!passwordForm.errors?.['required']">
+                    Le mot de passe est requis.
+                </div>
+                <div class="error" [hidden]="!passwordForm.errors?.['min']">
+                    Un minimum de 6 caractères est attendu.
+                </div>
+            </div>
         </div>
-    </div>
-    <div>
-        <label>Birthdate : </label>
-        <input id="birthdate" type="date" name="birthdate" formControlName="birthdate" />
-    </div>
-    <div *ngIf="!birthDateForm.value.valid && (birthDateForm.value.dirty ||birthDateForm.value.touched)">
-        <div [hidden]="!birthDateForm.value.errors?.['required']">
-            Birthdate is required
+
+
+        <div class="form-group">
+            <label class="form-label" for="birthdate">Date de naissance : </label>
+            <input type="date" id="birthdate" name="password" class="form-control" formControlName="birthdate"
+                class="form-control" />
+            <div *ngIf="!birthdate.valid && (birthdate.dirty || birthdate.touched)">
+                <div class="error" [hidden]="!birthdate.errors?.['required']">
+                    Le date de naissance est requise.
+                </div>
+                <div class="error" [hidden]="!birthdate.errors?.['releaseDateValidator']">
+                    La date de naissance ne peut pas être dans le passé.
+                </div>
+            </div>
         </div>
-    </div>
-    <input type="submit" value="connexion" [disabled]="!profileForm.valid" />
-</form>
+        <input type="submit" class="btn mt-3 btn-primary" value="connexion" [disabled]="!profileForm.valid" />
+    </form>
+    <app-success-sign-up [message]="message" *ngIf="message!=='null'" (close)="handleSuccess()"></app-success-sign-up>
+</div>

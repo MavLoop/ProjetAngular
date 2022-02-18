@@ -7,6 +7,6 @@ form {
     color: red;
 }
 
-input.ng-invalid.ng-touched {
+input.ng-invalid.ng-touched, select.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched{
     background-color: red;
 }
