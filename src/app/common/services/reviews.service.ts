@@ -33,7 +33,7 @@ export class ReviewsService {
     return this.http.get<Reviews[]>('/reviews/game/'+id);
   }
 
-  _deleteReviews$(id:string): Observable<any> {
+  _deleteReviews$(id:number): Observable<any> {
     var uri = "reviews/"+ id +"/delete";
     return this.http.get<any>(uri);
   }

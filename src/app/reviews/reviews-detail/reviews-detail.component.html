@@ -3,17 +3,17 @@
 
         <div class="card border-info mb-3 text-center">
             <div class="card-body text-info">
-                <h5 class="card-title">Avis de {{ reviews.gamer.pseudo.toUpperCase() }}</h5>
+                <h1 class="card-title">Avis de {{ reviews.gamer.pseudo.toUpperCase() }}</h1>
                 <div class="card-text">
-                    <label class="label" for="game">Nom du jeu : </label>
-                    <span>{{ reviews.game.name }}
-                    </span><br />
-                    <label class="label" for="sendingDate">Date de l'avis : </label>
-                    <span>{{ reviews.sendingDate | date : 'medium' : '' : 'fr-FR' }}</span><br />
-                    <label class="label" for="rating">Note attribuée : </label>
-                    <span>{{ reviews.rating }}</span><br />
-                    <label class="label" for="description">Description : </label>
-                    <span> {{ reviews.description }} </span><br />
+                    <h4 class="label" for="game">Nom du jeu : {{ reviews.game.name }}</h4>
+
+                    <h4 class="label" for="sendingDate">Date de l'avis : {{ reviews.sendingDate | date : 'medium' : '' : 'fr-FR' }}</h4>
+
+                    <h4 class="label" for="rating">Note attribuée : {{ reviews.rating }}/20</h4>
+
+                    <h4 class="label" for="description">Description : </h4>
+                    <h5>{{ reviews.description }}</h5>
+
                     <input class="btn btn-info mt-3" type="button" value="retour"
                         [routerLink]="['/reviews/moderator/all']">
                 </div>

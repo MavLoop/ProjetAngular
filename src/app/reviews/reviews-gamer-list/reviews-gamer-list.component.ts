@@ -1,31 +1,24 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import {LiveAnnouncer} from '@angular/cdk/a11y';
-import { ReactiveFormsModule } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
-import { faCheckCircle, faQuestion } from '@fortawesome/free-solid-svg-icons';
-import { Moderator } from 'src/app/common/model/moderator';
+import { faCheckCircle, faCircle } from '@fortawesome/free-solid-svg-icons';
+import { Gamer } from 'src/app/common/model/gamer';
 import { Reviews } from 'src/app/common/model/reviews.model';
 import { ReviewsService } from 'src/app/common/services/reviews.service';
 import { TokenStorageService } from 'src/app/common/services/token-storage.service';
 
-
 @Component({
-  selector: 'app-reviews-list',
-  templateUrl: './reviews-list.component.html',
-  styleUrls: ['./reviews-list.component.css']
+  selector: 'app-reviews-gamer-list',
+  templateUrl: './reviews-gamer-list.component.html',
+  styleUrls: ['./reviews-gamer-list.component.css']
 })
-export class ReviewsListComponent implements OnInit {
-
-  idReviews!: Number;
-  idModerator!: Number;
-  moderator!: Moderator;
+export class ReviewsGamerListComponent implements OnInit {
+  idGamer!:Number;
+  gamer!:Gamer;
   length!:number;
-  deleteR?:boolean;
 
   pageEvent!: PageEvent;
   pageSize: number = 10;
-  reviews?: Reviews;
   reviewss: Reviews[] = [];
   filteredReviewss!: Reviews[];
   displayedColumns: string[] = ["SendingDate", 'Nom du jeu', 'Pseudo du Joueur', 'Note', 'Statut', 'Information', 'Operations'];
@@ -33,38 +26,22 @@ export class ReviewsListComponent implements OnInit {
 
   constructor(private reviewsService: ReviewsService,
     private tokenStorageService: TokenStorageService,
-    private library: FaIconLibrary,
-    ) {
-    library.addIcons(faQuestion, faCheckCircle);
-    if (this.pageEvent === undefined) {
-      this.initReviews();
-      this.pageEvent = new PageEvent();
-      this.pageEvent.pageIndex = 0;
-      this.pageEvent.pageSize = this.pageSize;
-    }
-
-  }
-
+    private library: FaIconLibrary,) {
+      library.addIcons(faCircle, faCheckCircle);
+      if (this.pageEvent === undefined) {
+        this.initReviews();
+        this.pageEvent = new PageEvent();
+        this.pageEvent.pageIndex = 0;
+        this.pageEvent.pageSize = this.pageSize;
+      }
+     }
 
   ngOnInit(): void {
-    this.moderator = this.tokenStorageService.getUser();
-    if (this.moderator != null) {
-      console.log(this.moderator)
-      this.idModerator = this.moderator.id;
+    this.gamer = this.tokenStorageService.getUser();
+    if (this.gamer != null) {
+      console.log(this.gamer)
+      this.idGamer = this.gamer.id;
     }
-
-  }
-
-  okByModerator(idReviews: number): void {
-    console.log(this.idModerator)
-    this.reviewsService._moderationReviews$(idReviews, this.idModerator).subscribe({
-      next: (data: any) => {
-        this.reviews = data;
-        console.log(data);
-        this.initReviews();
-      },
-      error: (error => console.error(error))
-    });
   }
 
   getPaginatorData(event: PageEvent): void {
@@ -85,7 +62,11 @@ export class ReviewsListComponent implements OnInit {
         --this.pageEvent.pageIndex;
       }
 
-      this.reviewss = data;
+      data.forEach(element => {
+        if(element.gamer.id === this.idGamer){
+          this.reviewss.push(element);
+        }
+      });
 
       const reviewsFilterSendingDate = this.reviewss.sort(function compare(a, b) {
         if (a.sendingDate < b.sendingDate)
@@ -107,16 +88,6 @@ export class ReviewsListComponent implements OnInit {
         this.pageEvent.pageIndex * this.pageEvent.pageSize + this.pageSize);
       this.length = this.reviewss.length;
       this.pageEvent.length = this.length;
-    });
-  }
-
-  deleteReviews(idReviews: number): void {
-    this.reviewsService._deleteReviews$(idReviews).subscribe({
-      next: (data: any) => {
-        this.deleteR = data;
-        this.initReviews();
-      },
-      error: (error => console.error(error))
     });
   }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { GamerDto } from 'src/app/common/model/gamer-dto';
 import { UserService } from 'src/app/common/services/user.service';
 
@@ -10,16 +10,16 @@ import { UserService } from 'src/app/common/services/user.service';
 })
 export class SignUpComponent implements OnInit {
 
+  message: string = 'null';
 
-  gamerDto: GamerDto = new GamerDto();
 
-  constructor(private fb:FormBuilder, private userService : UserService) { }
+  constructor(private fb: FormBuilder, private userService: UserService) { }
 
   profileForm = this.fb.group({
     pseudo: ['', [Validators.required, Validators.pattern('^([A-Za-z0-9]+)*')]],
-    birthdate:['', [Validators.required]],
-    email:['',  [Validators.required, Validators.email]],
-    password:['', [Validators.required, Validators.minLength(6)]]
+    birthdate: [new Date().toISOString().slice(0, 10), [Validators.required, this.releaseDateValidator()]],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.min(6)]]
 
   });
 
@@ -32,29 +32,52 @@ export class SignUpComponent implements OnInit {
   get passwordForm(): FormControl {
     return this.profileForm.get('password') as FormControl;
   }
-  get birthDateForm(): FormControl {
+  get birthdate(): FormControl {
     return this.profileForm.get('birthdate') as FormControl;
   }
   get emailForm(): FormControl {
     return this.profileForm.get('email') as FormControl;
   }
 
-  private createGamer = (data: any): void => {
-    this.gamerDto = data;
-    console.log(this.gamerDto);
+  private createGamer = (data: any): any => {
+    console.log(data);
+    this.message = `Vous êtes officiellement inscrit`;
   }
 
   private ignoreError = (error: Error): void => {
-    console.log()
+    console.log(error);
+    this.message = `Ce joueur existe déjà !`;
   };
-  
-  formSending() {
-    this.gamerDto.pseudo = this.pseudoForm.value;
-    this.gamerDto.password = this.passwordForm.value;
-    this.gamerDto.birthdate = this.birthDateForm.value;
-    this.gamerDto.email = this.emailForm.value;
 
-    this.userService.addGamer$(this.gamerDto)
-      .subscribe(({ next: this.createGamer, error: this.ignoreError }))
+  constructGamerDto(): GamerDto {
+    return {
+      pseudo: this.pseudoForm.value,
+      password: this.passwordForm.value,
+      birthDate: this.birthdate.value,
+      email: this.emailForm.value
+    }
+  }
+
+  formSending() {
+    const gamerDto = this.constructGamerDto();
+    console.log(gamerDto);
+    this.userService.addGamer$(gamerDto).subscribe(({ 
+      next: this.createGamer, 
+      error: this.ignoreError 
+    }))
+  }
+
+  private releaseDateValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      let invalid = false;
+      const date = control.value;
+      const currentDate = new Date();
+      invalid = (new Date(date).valueOf()) > (currentDate.valueOf());
+      return invalid ? { invalidReleaseDate: { value: date } } : null;
+    };
+  }
+
+  handleSuccess() {
+    this.message = 'null';
   }
 }

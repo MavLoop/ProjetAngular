@@ -14,6 +14,7 @@ import { AddReviewsComponent } from './reviews/add-reviews/add-reviews.component
 import { ReviewsListComponent } from './reviews/reviews-list/reviews-list.component';
 import { NotConnectingErrorComponent } from './error/not-connecting-error/not-connecting-error.component';
 import { ReviewsDetailComponent } from './reviews/reviews-detail/reviews-detail.component';
+import { ReviewsGamerListComponent } from './reviews/reviews-gamer-list/reviews-gamer-list.component';
 
 export const routes: Routes = [
   { path:"", component:HomeComponent},
@@ -27,6 +28,7 @@ export const routes: Routes = [
   { path:"game/:id/reviews", component: AddReviewsComponent},
   { path:"reviews/moderator/all",component:ReviewsListComponent},
   { path:"reviews/moderator/reviews/:id",component:ReviewsDetailComponent},
+  { path:"reviews/gamer/list",component:ReviewsGamerListComponent},
   { path:"moderator/games/update/:id", component: AddGameComponent },
   { path:"moderator/games", component: ManageGameListComponent },
   { path:"games/upload/:id", component: UploadGameImageComponent },
