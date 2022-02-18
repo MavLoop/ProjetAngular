@@ -26,7 +26,7 @@
                 <img class="pegi-icon" src="/assets/images/pegi-icons/{{game.classification.id}}.png" />
             </div>
             <div class="button sub-content">
-                <button class="btn btn-primary" [routerLink]="'/game/'+game.id+'/reviews'">Poster un
+                <button class="btn btn-primary" *ngIf="!hasAdminRole" [routerLink]="'/game/'+game.id+'/reviews'">Poster un
                     commentaire</button>
             </div>
         </div>
