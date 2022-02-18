@@ -29,14 +29,12 @@ export class UploadGameImageComponent implements OnInit {
   ngOnInit(): void { }
 
   patchGame() {
-    console.log(this.formData);
     this.gameService.uploadGameImage(this.id, this.formData).pipe(tap({ next: () => this.router.navigate(["/moderator/games"]), error: (error) => console.log(error) })).subscribe();
   }
 
   onFileSelected(event: any) {
 
     const file: File = event.target.files[0];
-    console.log(file);
 
     if (file) {
       this.fileName = file.name;
