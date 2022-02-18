@@ -53,8 +53,7 @@
                 <span>
                     <button *ngIf="element.moderator === null" class="btn btn-success"
                         (click)="okByModerator(element.id)">Valider</button>
-                    <button *ngIf="element.moderator !== null" class="btn btn-secondary"
-                        (click)="okByModerator(element.id)">Valider</button>
+                    <button *ngIf="element.moderator !== null" [disabled]="element.moderator !== null" class="btn btn-secondary">Validé&nbsp;</button>
                 </span>
                 <span>
                     <button class="btn btn-danger" (click)="deleteReviews(element.id)">Supprimer</button>

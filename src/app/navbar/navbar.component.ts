@@ -13,7 +13,8 @@ import { TokenStorageService } from '../common/services/token-storage.service';
 export class NavbarComponent implements OnInit {
 
   gamer?:Gamer;
-  hasModeratorRole?:boolean;
+  hasModeratorRole=false;
+  hasGamerRole=false;
   isLoggedIn = false;
   constructor(private tokenStorageService: TokenStorageService,
     private router: Router,
@@ -29,8 +30,10 @@ export class NavbarComponent implements OnInit {
       if (isConnect) {
         if (this.gamer?.admin == true) {
           this.hasModeratorRole = true;
+          this.hasGamerRole = false;
         } else {
           this.hasModeratorRole = false;
+          this.hasGamerRole = true;
         }
       }
     });
@@ -39,8 +42,8 @@ export class NavbarComponent implements OnInit {
 onLogout(): void {
   this.tokenStorageService.signOut();
   this.isLoggedIn = false;
-  // pb ici 
-  this.router.navigate(['//']);
+
+  this.router.navigate(['/']);
 
 }
 

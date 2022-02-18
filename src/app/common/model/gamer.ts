@@ -3,6 +3,6 @@ export class Gamer {
     pseudo!:string
     password!:string
     email!:string
-    birthDat!:string
+    birthDate!:string
     admin!:boolean
 }
