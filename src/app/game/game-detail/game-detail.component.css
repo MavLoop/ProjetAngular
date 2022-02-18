@@ -1,11 +1,7 @@
-game-detail {
+.game-detail {
     display: flex;
     flex-flow: row wrap;
-    max-width: 50vw;
-}
-
-.button {
-    position: sticky;
+    justify-content: space-around;
 }
 
 .title {
@@ -16,27 +12,31 @@ game-detail {
 .image {
     height: 420px;
     width: 300px;
-}
-
-.game-desc {
-    max-width: 250px;
-}
-
-.content {
-    margin: 0px;
-    width: fit-content;
+    margin : 10px;
 }
 
 .sub-content {
-    margin: 20px;
+    margin-top: 5px;
+}
+
+.game-desc {
+    width: 300px;
+}
+
+.my-content {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    margin: 10px;
+    width: fit-content;
 }
 
 .pegi-icon {
+    height: 75px;
     width: 60px;
 }
 
-.platforms {
-    display: flex;
-    flex-flow: row wrap;
-    gap: 10px;
+.sad {
+    margin-top: 20px;
+    font-weight: 500;
 }

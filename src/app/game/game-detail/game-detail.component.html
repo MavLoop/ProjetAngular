@@ -2,7 +2,7 @@
     <div class="game-detail">
         <img class="image" *ngIf="game.image === null" src="/assets/images/games/default.jpg" />
         <img class="image" *ngIf="game.image !== null" src="images/{{game.image}}" />
-        <div class="content">
+        <div class="my-content">
             <div>
                 <div class="title">
                     <h1> {{ game.name }} </h1>
@@ -31,7 +31,8 @@
             </div>
         </div>
     </div>
-    <div class="review-container">
+    <p class="sad text-center" *ngIf="reviews === undefined || reviews.length < 1"> Malheureusement, aucun avis n'est disponible pour ce jeu. </p>
+    <div class="review-container" *ngIf="reviews !== undefined && reviews.length > 0">
         <app-game-review *ngFor="let review of reviews" [review]="review"></app-game-review>
     </div>
 </div>

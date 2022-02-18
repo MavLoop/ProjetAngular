@@ -1,9 +1,8 @@
 <div class="review">
-    <h1> {{review.rating}}/20 </h1>
-    <div> {{review.gamer.pseudo}} </div>
+    <h1 class="rating"> {{review.rating}}/20 </h1>
+    <div class="title"> Posté par {{review.gamer.pseudo}} le {{review.sendingDate | date : 'longDate' : '' : 'fr-FR'}} </div>
     <div>
-        <p>
-            {{review.description}}
-        </p>
+        <p> {{review.description}} </p>
+        <hr />
     </div>
 </div>
