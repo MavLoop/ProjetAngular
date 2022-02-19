@@ -14,9 +14,9 @@
                     <h4 class="label" for="description">Description : </h4>
                     <h5>{{ reviews.description }}</h5>
 
-                    <input *ngIf="hasAdminRole" class="btn btn-info mt-3" type="button" value="retour"
+                    <input *ngIf="user.admin" class="btn btn-info mt-3" type="button" value="retour"
                         [routerLink]="['/reviews/moderator/all']">
-                    <input *ngIf="!hasAdminRole" class="btn btn-info mt-3" type="button" value="retour"
+                    <input *ngIf="!user.admin" class="btn btn-info mt-3" type="button" value="retour"
                         [routerLink]="['/reviews/gamer/list']">
                 </div>
             </div>

@@ -40,8 +40,6 @@ import localeFrExtra from '@angular/common/locales/extra/fr';
 import { ReviewsGamerListComponent } from './reviews/reviews-gamer-list/reviews-gamer-list.component';
 import { SuccessSignUpComponent } from './success-sign-up/success-sign-up.component';
 import { registerLocaleData } from '@angular/common';
-import { NotAdminErrorComponent } from './error/not-admin-error/not-admin-error.component';
-import { NotGamerErrorComponent } from './error/not-gamer-error/not-gamer-error.component';
 
 registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
 
@@ -69,8 +67,6 @@ registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
     GameReviewComponent,
     ReviewsGamerListComponent,
     SuccessSignUpComponent,
-    NotAdminErrorComponent,
-    NotGamerErrorComponent
   ],
   imports: [
     BrowserModule,

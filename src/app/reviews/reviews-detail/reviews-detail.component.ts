@@ -18,7 +18,6 @@ export class ReviewsDetailComponent implements OnInit {
   @Input()
   id!: string | null;
   reviews!: Reviews;
-  hasAdminRole = false;
   user!: Gamer | Moderator;
 
   constructor(private reviewsService: ReviewsService,
@@ -28,21 +27,13 @@ export class ReviewsDetailComponent implements OnInit {
       this.id = params.get('id');
       if (this.id !== null) {
         this.initReviews(parseInt(this.id));
+          this.user = this.tokenStorageService.getUser();
+
       } else {
         this.router.navigate(['/error-not-connecting']);
       }
     });
-    this.tokenStorageService.estConnecte.subscribe(isConnect => {
-      this.user = this.tokenStorageService.getUser();
-      if (isConnect) {
-        if (this.user.admin == true) {
-          this.hasAdminRole = true;
-        } else {
-          this.hasAdminRole = false;
-          this.router.navigate(['/error-not-connecting']);
-        }
-      }
-    });
+    
   }
 
   ngOnInit(): void {
