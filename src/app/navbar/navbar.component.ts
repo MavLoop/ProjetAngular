@@ -12,39 +12,24 @@ import { TokenStorageService } from '../common/services/token-storage.service';
 })
 export class NavbarComponent implements OnInit {
 
-  gamer?:Gamer;
-  hasModeratorRole=false;
-  hasGamerRole=false;
+  gamer?: Gamer;
+  hasModeratorRole = false;
+  hasGamerRole = false;
   isLoggedIn = false;
   constructor(private tokenStorageService: TokenStorageService,
     private router: Router,
     private library: FaIconLibrary,) {
-      library.addIcons(faHiking, faUser);
-     }
+    library.addIcons(faHiking, faUser);
+  }
 
   ngOnInit(): void {
-    this.tokenStorageService.estConnecte.subscribe(isConnect => {
-      // this.isLoggedIn = !!this.tokenStorage.getToken();
-      this.isLoggedIn = !!this.tokenStorageService.getUser();
-      this.gamer = this.tokenStorageService.getUser();
-      if (isConnect) {
-        if (this.gamer?.admin == true) {
-          this.hasModeratorRole = true;
-          this.hasGamerRole = false;
-        } else {
-          this.hasModeratorRole = false;
-          this.hasGamerRole = true;
-        }
-      }
-    });
-}
+    
+  }
 
-onLogout(): void {
-  this.tokenStorageService.signOut();
-  this.isLoggedIn = false;
+  onLogout(): void {
+    this.tokenStorageService.signOut();
+    this.isLoggedIn = false;
 
-  this.router.navigate(['/']);
-
-}
-
+    this.router.navigate(['/']);
+  }
 }
