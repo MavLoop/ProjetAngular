@@ -80,9 +80,11 @@ export class ReviewsListComponent implements OnInit {
 
   async initReviews() {
     this.reviewsService._searchAllReviews$().subscribe((data) => {
+      console.log(this.reviewss.length);
 
       if(this.pageEvent.pageIndex > 0 && (this.length-1) % this.pageSize === 0) {
         --this.pageEvent.pageIndex;
+        this.pageEvent.length = this.reviewss.length - 1;
       }
 
       this.reviewss = data;
@@ -107,6 +109,7 @@ export class ReviewsListComponent implements OnInit {
         this.pageEvent.pageIndex * this.pageEvent.pageSize + this.pageSize);
       this.length = this.reviewss.length;
       this.pageEvent.length = this.length;
+      console.log(this.reviewss.length);
     });
   }
 
