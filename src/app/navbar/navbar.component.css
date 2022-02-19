@@ -15,9 +15,9 @@
     width: 50px;
 }
 
-.nav-bar {
+.navbar {
     display: flex;
-    flex-flow: row wrap;
+    /* flex-flow: row wrap; */
     align-items: center;
     justify-content: space-between;
     background-color: antiquewhite;
@@ -25,10 +25,27 @@
     position: sticky;
     padding-left: 2%;
     padding-right: 2%;
-    height: 50px;
+    height: 80px;
+    
 }
 
 .logo {
     height: 60px;
     width: 60px;
+}
+
+.navbar-light .navbar-nav .nav-link{
+    /* font-family: initial; */
+    font-weight: bold;
+}    
+
+.navbar-light .navbar-nav .nav-link:hover
+{
+    color : white;
+    background-color : #141414;
+  border-radius: 50px;
+    background-image: linear-gradient(to top left,
+                                      rgba(0, 0, 0, .2),
+                                      rgba(0, 0, 0, .2) 30%,
+                                      rgba(0, 0, 0, 0));
 }
