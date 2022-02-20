@@ -1,7 +1,7 @@
 <div class="backdrop" (click)="onCloseAlert()"></div>
-<div class="modal-content alert alert-box font-weight-bold text-center alert-box" [ngClass]="{'alert-success': alert.success, 'alert-danger': !alert.success}">
+<div class="modal-content alert alert-box text-center" [ngClass]="{'alert-success': alert.success, 'alert-danger': !alert.success}">
     <div class="modal-header">
-        <h3 class="ml-5">{{ alert.title }}</h3>
+        <h3 class="ml-5 font-weight-bold">{{ alert.title }}</h3>
         <button type="button" class="close" aria-label="Close" (click)="onCloseAlert()">
             <span aria-hidden="true">&times;</span>
         </button>
