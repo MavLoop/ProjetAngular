@@ -16,39 +16,53 @@ import { Moderator } from 'src/app/common/model/moderator';
 })
 export class GameDetailComponent implements OnInit {
 
-  id!: string | null;
+  id!: number;
   @Input()
   game!: Game;
   platforms!: string;
   reviews!: Reviews[];
-  hasAdminRole = false;
+  hasModeratorRole!: boolean;
   user!: Gamer | Moderator;
 
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private gameService: GameService, private reviewsService: ReviewsService, private tokenStorageService: TokenStorageService) {
     this.route.paramMap.subscribe((params: ParamMap) => {
-      this.id = params.get('id');
-      if (this.id !== null) {
-        this.initGame(parseInt(this.id));
-        this.initReviews(parseInt(this.id));
+      let id = params.get('id');
+      if (id !== null) {
+        this.id = parseInt(id);
+        this.initGame(parseInt(id));
+        this.initReviews(parseInt(id));
       } else {
         this.router.navigate(['/error']);
-      }
-    });
-    this.tokenStorageService.estConnecte.subscribe(isConnect => {
-      this.user = this.tokenStorageService.getUser();
-      if (isConnect) {
-        if (this.user.admin == true) {
-          this.hasAdminRole = true;
-        }
-        if (this.user.admin == false) {
-          this.hasAdminRole = false;
-        }
       }
     });
   }
 
   ngOnInit(): void {
+    this.voirSiConnecte();
+    this.voirSiAdmin();
+  }
 
+  voirSiAdmin() {
+    this.user = this.tokenStorageService.getUser();
+    if(this.user.admin == true) {
+      this.hasModeratorRole = true;
+    } else {
+      this.hasModeratorRole = false;
+    }
+  }
+
+  voirSiConnecte() {
+    this.tokenStorageService.estConnecte.subscribe(isConnect => {
+      this.user = this.tokenStorageService.getUser();
+      if (isConnect) {
+        if (this.user.admin == true) {
+          this.hasModeratorRole = true;
+        }
+        if (this.user.admin == false) {
+          this.hasModeratorRole = false;
+        }
+      }
+    });
   }
 
   initReviews(id: number) {
@@ -59,7 +73,10 @@ export class GameDetailComponent implements OnInit {
   }
 
   initGame(id: number): void {
-    this.gameService.getGameById(id).subscribe((data) => { this.game = data; this.initPlatforms(); });
+    this.gameService.getGameById(id).subscribe({
+      next: (data) => { this.game = data; this.initPlatforms(); },
+      error: (error) => {console.log(error)}
+    });
   }
 
   initPlatforms() {
