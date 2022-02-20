@@ -28,12 +28,11 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.voirSiConnecte();
     this.voirSiAdmin();
-
   }
 
   voirSiAdmin() {
     this.user = this.tokenStorageService.getUser();
-    console.log(this.user.admin + this.user.pseudo)
+    //console.log(this.user.admin + this.user.pseudo)
     if(this.user.admin == true) {
       this.hasModeratorRole = true;
     } else {

@@ -6,21 +6,21 @@
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
             <li class="nav-item">
-                <a routerLink="" class="nav-link active" placement="bottom">Accueil</a>
+                <a routerLink="" class="nav-link" placement="bottom" routerLinkActive="active" [routerLinkActiveOptions]={exact:true}>Accueil</a>
             </li>
             <li class="nav-item" *ngIf='isLoggedIn'>
-                <a routerLink="games" class="nav-link" placement="bottom">Catalogue</a>
+                <a routerLink="games" class="nav-link" placement="bottom" routerLinkActive="active" [routerLinkActiveOptions]={exact:true}>Catalogue</a>
             </li>
             <li class="nav-item" *ngIf='isLoggedIn && !hasModeratorRole'>
-                <a class="nav-link" routerLink="reviews/gamer/list">Mes avis</a>
+                <a class="nav-link" routerLink="reviews/gamer/list" routerLinkActive="active" [routerLinkActiveOptions]={exact:true}>Mes avis</a>
             </li>
 
             <li class="nav-item" *ngIf='isLoggedIn && hasModeratorRole'>
-                <a class="nav-link" [routerLink]="'/moderator/games'">Gestion des jeux</a>
+                <a class="nav-link" [routerLink]="'/moderator/games'" routerLinkActive="active" [routerLinkActiveOptions]={exact:true}>Gestion des jeux</a>
             </li>
 
             <li class="nav-item" *ngIf='isLoggedIn && hasModeratorRole'>
-                <a class="nav-link" [routerLink]="'/reviews/moderator/all'">Gestion des avis</a>
+                <a class="nav-link" [routerLink]="'/reviews/moderator/all'" routerLinkActive="active" [routerLinkActiveOptions]={exact:true}>Gestion des avis</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">

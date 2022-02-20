@@ -7,9 +7,9 @@
       <input type="text" id="name" name="name" class="form-control" formControlName="name" class="form-control" />
       <div *ngIf="!name.valid && (name.dirty || name.touched)">
         <div class="error" [hidden]="!name.errors?.['required']">
-            Le nom est requis.
+          Le nom est requis.
         </div>
-    </div>
+      </div>
     </div>
     <div class="form-group">
       <label class="form-label" for="editorName">Editeur : </label>
@@ -20,21 +20,21 @@
       </select>
       <div *ngIf="!editorName.valid && (editorName.dirty || editorName.touched)">
         <div class="error" [hidden]="!editorName.errors?.['required']">
-            L'éditeur est requis.
+          L'éditeur est requis.
         </div>
-    </div>
+      </div>
     </div>
     <div class="form-group">
       <label class="form-label" for="releaseDate">Date de sortie : </label>
       <input type="date" id="releaseDate" name="releaseDate" class="form-control" formControlName="releaseDate"
         class="form-control" />
-        <div *ngIf="!releaseDate.valid && (releaseDate.dirty || releaseDate.touched)">
-          <div class="error" [hidden]="!releaseDate.errors?.['required']">
-              Le date de sortie est requis.
-          </div>
-          <div class="error" [hidden]="!releaseDate.errors?.['invalidReleaseDate']">
-              La date de sortie doit être dans le passé
-          </div>
+      <div *ngIf="!releaseDate.valid && (releaseDate.dirty || releaseDate.touched)">
+        <div class="error" [hidden]="!releaseDate.errors?.['required']">
+          Le date de sortie est requis.
+        </div>
+        <div class="error" [hidden]="!releaseDate.errors?.['invalidReleaseDate']">
+          La date de sortie doit être dans le passé
+        </div>
       </div>
     </div>
     <div class="form-group">
@@ -90,13 +90,13 @@
         <span class="error">Le modèle économique est requis</span>
       </div>
     </div>
-    <input class="btn mt-3" [ngClass]="{'btn-primary': isAddMode, 'btn-secondary': !isAddMode}" type="submit"
-      [value]="isAddMode ? 'Ajouter': 'Modifier'" [disabled]="addGameForm.invalid">
+    <div class="d-flex justify-content-around form-group align-items-center mb-0">
+      <input class="btn" [ngClass]="{'btn-primary': isAddMode, 'btn-secondary': !isAddMode}" type="submit"
+        [value]="isAddMode ? 'Ajouter': 'Modifier'" [disabled]="addGameForm.invalid">
+      <input class="btn btn-primary" [routerLink]="'/moderator/games'" value="Retour" type="button">
+    </div>
+
   </form>
-  <app-success [message]="success" *ngIf="success!=='null'" (close)="handleSuccess()"></app-success>
-  <!-- <app-error>
-      [messageError]="error"
-      *ngIf="error!=='null'"
-      (close)="handleError()">
-     </app-error> -->
+
+  <app-alert [alert]="alert" *ngIf="alert.title!==''" (close)="handleAlert()"> </app-alert>
 </div>

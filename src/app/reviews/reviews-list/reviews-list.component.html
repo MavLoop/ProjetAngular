@@ -4,7 +4,7 @@
 
         <ng-container matColumnDef="SendingDate">
             <th mat-header-cell *matHeaderCellDef>Date d'envoi</th>
-            <td mat-cell *matCellDef="let element">{{ element.sendingDate | date : 'medium' }}</td>
+            <td mat-cell *matCellDef="let element">{{ element.sendingDate | date : 'medium' : '' : 'fr-FR' }}</td>
         </ng-container>
 
         <ng-container matColumnDef="Nom du jeu">

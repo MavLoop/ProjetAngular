@@ -50,6 +50,7 @@ export class ManageGameListComponent implements OnInit {
   fetchGames() {
     this.gameService.getAllGames().subscribe((data) => {
       if(this.pageEvent.pageIndex > 0 && (this.length-1) % this.pageSize === 0) {
+        this.pageEvent.length = this.length-1;
         --this.pageEvent.pageIndex;
       }
       this.games = data;

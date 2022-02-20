@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { tick } from '@angular/core/testing';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Alert } from 'src/app/common/model/alert.model';
 import { BusinessModel } from 'src/app/common/model/business-model.model';
 import { Classification } from 'src/app/common/model/classification.model';
 import { Editor } from 'src/app/common/model/editor.model';
@@ -22,8 +24,11 @@ export class AddGameComponent implements OnInit {
   businessModels!: BusinessModel[];
   isAddMode!: boolean;
   idGame!: number;
-  success: string = 'null';
-  error: string = 'null';
+  alert: Alert = {
+    title: '',
+    message: '',
+    success: false
+  }
 
 
 
@@ -44,7 +49,7 @@ export class AddGameComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.idGame = +params['id'];
     });
-    
+
     this.isAddMode = !this.idGame;
     let gameDto!: GameDto;
     if (!this.isAddMode) {
@@ -57,7 +62,7 @@ export class AddGameComponent implements OnInit {
             classificationName: game.classification.name,
             genreName: game.genre.name,
             editorName: game.editor.name,
-            platformNames: game.platforms.map(platform =>platform.name),
+            platformNames: game.platforms.map(platform => platform.name),
             businessModelName: game.businessModel.name
           }
           this.addGameForm.patchValue(gameDto);
@@ -143,26 +148,33 @@ export class AddGameComponent implements OnInit {
     const gameDto = this.constructGameDto();
     this.gameService.addGame(gameDto).subscribe({
       next: (data: any) => {
-        
-        this.success = `Le jeu ${gameDto.name} a bien été ajouté à la liste des jeux`;
+        this.alert.title = "Ajout d'un nouveau jeu reussi!";
+        this.alert.message = `Le jeu ${gameDto.name} a bien été ajouté à la liste des jeux`;
+        this.alert.success = true;
       },
-      error: (error: any) => console.error(error.error)
+      error: (error: any) => {
+        this.alert.title = 'Echec!';
+        this.alert.success = false;
+        this.alert.message = error.error;
+      }
     });
 
   }
 
   updateGame() {
     const gameDto = this.constructGameDto();
-    this.gameService.updateGame(gameDto, this.idGame).subscribe({next: (data: any) => {
-      console.log(`réponse => ${data}`);
-      console.log("type réponse => " + typeof data);
-      this.success = `Le jeu ${gameDto.name} a bien été modifié`;
-    },
-    error: (error: any) => {
-      console.error(error);
-      this.error = error
-    } 
-  });
+    this.gameService.updateGame(gameDto, this.idGame).subscribe({
+      next: (data: any) => {
+        this.alert.title = "Modification du jeu reussi!";
+        this.alert.message = `Le jeu ${gameDto.name} a bien été modifié`;
+        this.alert.success = true;
+      },
+      error: (error: any) => {
+        this.alert.title = 'Echec!';
+        this.alert.success = false;
+        this.alert.message = error.error;
+      }
+    });
 
   }
   /**
@@ -194,10 +206,12 @@ export class AddGameComponent implements OnInit {
       return invalid ? { invalidReleaseDate: { value: date } } : null;
     };
   }
-  handleSuccess() {
-    this.success = 'null';
-  }
-  handleError() {
-    this.error = 'null';
+  
+  handleAlert() {
+    this.alert = {
+      title: '',
+      message: '',
+      success: false
+    }
   }
 }
