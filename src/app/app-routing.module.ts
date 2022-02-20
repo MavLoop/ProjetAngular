@@ -31,7 +31,7 @@ export const routes: Routes = [
   { path:"moderator/games", component: ManageGameListComponent , canActivate: [AdminGuard] },
   { path:"game/:id/reviews", component: AddReviewsComponent , canActivate: [GamerGuard] },
   { path:"reviews/moderator/all",component:ReviewsListComponent , canActivate: [AdminGuard]},
-  { path:"reviews/moderator/reviews/:id",component:ReviewsDetailComponent , canActivate: [AdminGuard]},
+  { path:"reviews/moderator/reviews/:id",component:ReviewsDetailComponent , canActivate: [UserGuardGuard]},
   { path:"reviews/gamer/list",component:ReviewsGamerListComponent , canActivate: [GamerGuard] },
   { path:"moderator/games/update/:id", component: AddGameComponent , canActivate: [AdminGuard]},
   { path:"moderator/games", component: ManageGameListComponent , canActivate: [AdminGuard]},

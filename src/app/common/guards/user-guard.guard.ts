@@ -18,7 +18,6 @@ export class UserGuardGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     this.user = this.tokenStorageService.getUser();
-    console.log(this.user)
     if (this.user != null || undefined) {
       return true;
     } else {

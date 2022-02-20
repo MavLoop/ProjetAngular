@@ -49,6 +49,15 @@ export class SignUpComponent implements OnInit {
     this.message = `Ce joueur existe déjà !`;
   };
 
+  createNewGamer() {
+    this.profileForm.patchValue({
+      'pseudo' : 'NinjaGamer',
+      'password' : 'azerty',
+      'birthdate' : '1990-07-28',
+      'email' : 'ninja-gamer@gmail.com'
+    })
+  }
+
   constructGamerDto(): GamerDto {
     return {
       pseudo: this.pseudoForm.value,
@@ -61,9 +70,9 @@ export class SignUpComponent implements OnInit {
   formSending() {
     const gamerDto = this.constructGamerDto();
     console.log(gamerDto);
-    this.userService.addGamer$(gamerDto).subscribe(({ 
-      next: this.createGamer, 
-      error: this.ignoreError 
+    this.userService.addGamer$(gamerDto).subscribe(({
+      next: this.createGamer,
+      error: this.ignoreError
     }))
   }
 

@@ -1,0 +1,36 @@
+.jumbotron {
+    position: relative; 
+    background-image: 
+     url(../../assets/images/games/video-game-review.jpg);
+    background-size: cover;
+    min-height: 100%;
+   }
+
+   .jumbotron::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.4);
+ }
+   
+   h2 {
+       position: relative;
+       color: whitesmoke;
+       font-family: initial;
+       font-weight: bold;
+   }
+  
+   .lead{
+    position: relative;
+      color: whitesmoke;
+      font-family: initial;
+      /* font-weight: bold; */
+   }
+
+   app-sign-in{
+    position: relative;
+   }
+  

@@ -1,8 +1,4 @@
-<nav class="navbar fixed-top sticky-top navbar-light navbar-expand-lg" style="background-color: #e3f2fd;">
-    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
-            aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button> -->
+<nav class="navbar fixed-top sticky-top navbar-light navbar-expand" style="background-color: ghostwhite;">
     <div class="collapse navbar-collapse navbar-text" id="navbarTogglerDemo01">
         <a class="navbar-brand" href="#" class="navbar-brand">
             <img class="logo" src="/assets/logo.png" width="100" height="100%" alt="image" />
@@ -10,7 +6,7 @@
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
             <li class="nav-item">
-                <a routerLink="" class="nav-link" placement="bottom">Accueil</a>
+                <a routerLink="" class="nav-link active" placement="bottom">Accueil</a>
             </li>
             <li class="nav-item" *ngIf='isLoggedIn'>
                 <a routerLink="games" class="nav-link" placement="bottom">Catalogue</a>

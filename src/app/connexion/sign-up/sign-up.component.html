@@ -2,18 +2,21 @@
 <div class="container">
     <form [formGroup]="profileForm" class="border border-primary border-2 rounded p-3" (ngSubmit)="formSending()">
 
+        <input class="btn-xs btn-secondary" type="button" value="Insertion d'un joueur pour la démo"
+            (click)="createNewGamer()" />
+
         <div class="form-group">
             <label class="form-label" for="pseudo">Pseudo : </label>
             <input type="text" id="pseudo" name="pseudo" class="form-control" formControlName="pseudo"
                 class="form-control" />
-                <div *ngIf="!pseudoForm.valid && (pseudoForm.dirty || pseudoForm.touched)">
-                    <div class="error" [hidden]="!pseudoForm.errors?.['required']">
-                        L'email est requis.
-                    </div>
-                    <div class="error" [hidden]="!pseudoForm.errors?.['pattern']">
-                       Attention les symboles sont interdits !
-                    </div>
+            <div *ngIf="!pseudoForm.valid && (pseudoForm.dirty || pseudoForm.touched)">
+                <div class="error" [hidden]="!pseudoForm.errors?.['required']">
+                    L'email est requis.
                 </div>
+                <div class="error" [hidden]="!pseudoForm.errors?.['pattern']">
+                    Attention les symboles sont interdits !
+                </div>
+            </div>
         </div>
 
         <div class="form-group">
@@ -25,7 +28,7 @@
                     L'email est requis.
                 </div>
                 <div class="error" [hidden]="!emailForm.errors?.['email']">
-                   Exemple : abc@abc.abc
+                    Exemple : abc@abc.abc
                 </div>
             </div>
         </div>
@@ -44,7 +47,6 @@
             </div>
         </div>
 
-
         <div class="form-group">
             <label class="form-label" for="birthdate">Date de naissance : </label>
             <input type="date" id="birthdate" name="password" class="form-control" formControlName="birthdate"
@@ -56,9 +58,13 @@
                 <div class="error" [hidden]="!birthdate.errors?.['invalidReleaseDate']">
                     La date de naissance ne peut pas être dans le passé.
                 </div>
+                
             </div>
         </div>
-        <input type="submit" class="btn mt-3 btn-primary" value="connexion" [disabled]="!profileForm.valid" />
+        <div class="d-flex justify-content-around form-group">
+            <input type="submit" class="btn mt-3 btn-primary" value="Retour" routerLink="" />
+            <input type="submit" class="btn mt-3 btn-success" value="Valider" [disabled]="!profileForm.valid" />
+        </div>
     </form>
     <app-success-sign-up [message]="message" *ngIf="message!=='null'" (close)="handleSuccess()"></app-success-sign-up>
 </div>
