@@ -214,4 +214,17 @@ export class AddGameComponent implements OnInit {
       success: false
     }
   }
+
+  createNewGame() {
+    this.addGameForm.patchValue({
+      'name' : 'StarWars BattleFront II',
+      'editorName' : 'Electronic Arts',
+      'releaseDate' : '2017-11-17',
+      'description' : "Star Wars Battlefront II est un jeu vidéo de tir à la première et troisième personne développé par DICE, Criterion Games et Motive Studios, et édité par Electronic Arts (EA). Le jeu sort le 17 novembre 2017 sur Windows, PlayStation 4 et Xbox One. Il fait suite au jeu vidéo Star Wars: Battlefront sorti en 2015. La campagne du jeu, présente dans ce second opus, débute après les événements du film Star Wars : Le Retour du Jedi, lorsque la base sidérale de l'Empire galactique, l'Étoile de la Mort, explose, mettant fin au règne de l'Empereur. Un soldat d'élite de l'Empire, Iden Versio, est alors décidée à venger la mort de l'Empereur.",
+      'genreName' : 'FPS',
+      'classificationName' : 'PEGI 12',
+      'platformNames' : ['PlayStation 4', 'PlayStation 5', 'Xbox One'],
+      'businessModelName' : 'Free to play',
+    })
+  }
 }

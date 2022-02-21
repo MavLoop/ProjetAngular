@@ -4,7 +4,7 @@
             (ngSubmit)="addReviews()">
             <div class="form-group">
                 <label class="form-label" for="rating">Note : </label>
-                <input type="text" id="rating" name="rating" class="form-control" formControlName="rating"
+                <input type="number" id="rating" name="rating" class="form-control" formControlName="rating"
                     class="form-control" />
 
                 <div *ngIf="!rating.valid && (rating.dirty || rating.touched)">
@@ -52,15 +52,11 @@
     <div class="row" *ngIf="submitted">
         <div class="col-md-2"></div>
         <div class="col-md-8">
-            <div class="text-center row">
-                <h4>Votre avis a bien été posté !</h4>
-            </div>
-            <div class="row">
-                <input class="btn btn-primary mt-3" type="button" value="Liste des jeux videos"
-                    [routerLink]="['/games/details/'+id]">
+            <div class="text-center">
+                <h4>Votre avis a bien été posté !</h4> <br>
+                <input class="btn btn-primary mt-3" type="button" value="Retour" [routerLink]="['/games/details/'+id]">
             </div>
         </div>
         <div class="col-md-2"></div>
     </div>
 </div>
-
