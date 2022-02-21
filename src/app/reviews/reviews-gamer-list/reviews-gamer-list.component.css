@@ -5,3 +5,11 @@ table {
 span {
     padding: 5px;
 }
+
+.empty {
+    margin-top: 10%;
+}
+
+.title {
+    font-weight: 500;
+}

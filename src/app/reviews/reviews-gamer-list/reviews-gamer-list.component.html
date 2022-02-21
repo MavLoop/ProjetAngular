@@ -1,5 +1,8 @@
-
-<div>
+<div class="empty" *ngIf="reviewss.length === 0">
+    <h4 class="text-center title">Vous n'avez pas encore posté d'avis pour le moment.</h4>
+    <p class="text-center"> Rendez-vous sur le catalogue pour donner votre avis !</p>
+</div>
+<div *ngIf="reviewss.length > 0">
     <table mat-table [dataSource]="filteredReviewss">
 
         <ng-container matColumnDef="SendingDate">
@@ -50,12 +53,6 @@
                     <button class="btn btn-info" [routerLink]="'/reviews/moderator/reviews/'+element.id">Voir</button>
                 </span>
                 <!-- <span>
-                    <button *ngIf="element.moderator === null" class="btn btn-success"
-                        (click)="okByModerator(element.id)">Valider</button>
-                    <button *ngIf="element.moderator !== null" class="btn btn-secondary"
-                        (click)="okByModerator(element.id)">Valider</button>
-                </span>
-                <span>
                     <button class="btn btn-danger" (click)="deleteReviews(element.id)">Supprimer</button>
                 </span> -->
             </td>
