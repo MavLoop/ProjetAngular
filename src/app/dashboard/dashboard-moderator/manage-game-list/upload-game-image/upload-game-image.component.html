@@ -1,4 +1,8 @@
-<div>
-    <input type="file" accept="image/png, image/gif, image/jpeg" (change)="onFileSelected($event)"/>
-    <button class="btn btn-primary" (click)="patchGame()" [disabled]="!formData" >Envoyer !</button>
+<div class="text-center title">
+    <h3>Téléverser une image</h3>
+    <p>{{game.name}}</p>
+</div>
+<div class="text-center">
+    <input type="file" accept="image/png, image/gif, image/jpeg" (change)="onFileSelected($event)" />
+    <button class="btn btn-primary" (click)="patchGame()" [disabled]="!formData">Envoyer !</button>
 </div>
