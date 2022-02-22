@@ -4,6 +4,6 @@
         <input type="text" name="search" class="search-input" [(ngModel)]="filter" (ngModelChange)="updateFilter()">
     </div>
 </div>
-<div class="cards">
+<div class=" cards justify-content-center">
     <app-game *ngFor="let game of filteredGames" [game]="game"></app-game>
 </div>

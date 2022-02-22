@@ -2,7 +2,7 @@
 <h1 class="text-center" *ngIf="!isAddMode">Modification d'un Jeu</h1>
 <div class="container">
   <form [formGroup]="addGameForm" class="border border-primary border-2 rounded p-3" (ngSubmit)="onSubmit()">
-    <input class="btn-xs btn-secondary" type="button" value="Insertion d'un jeu pour la démo"
+    <input *ngIf="isAddMode" class="btn-xs btn-secondary" type="button" value="Insertion d'un jeu pour la démo"
       (click)="createNewGame()" />
     <div class="form-group">
       <label class="form-label" for="name">Nom : </label>
